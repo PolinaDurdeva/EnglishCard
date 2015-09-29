@@ -28,8 +28,8 @@
 
         <!--ContentPanel — поместите здесь дополнительное содержимое-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button Click="isKnown" Content="Знаю" Height="67" HorizontalAlignment="Left" Margin="289,530,0,0" Name="Know" VerticalAlignment="Top" Width="149" />
-            <Button Click ="isUnknown" Content="Не знаю" Height="67" HorizontalAlignment="Left" Margin="38,530,0,0" Name="Unknown" VerticalAlignment="Top" Width="149" />
+            <Button Content="Знаю" Height="67" HorizontalAlignment="Left" Margin="289,530,0,0" Name="Know" VerticalAlignment="Top" Width="149" />
+            <Button Content="Не знаю" Height="67" HorizontalAlignment="Left" Margin="38,530,0,0" Name="Unknown" VerticalAlignment="Top" Width="149" />
             <TextBlock Height="290" HorizontalAlignment="Left" VerticalAlignment="Top" Text="TextBlock"  Width="220" />
             <TextBlock Height="290" HorizontalAlignment="Right" Name="textBlock1" Text="TextBlock" VerticalAlignment="Top" Width="220" />
             <TextBlock Height="290" HorizontalAlignment="Right" Name="textBlock2" Text="TextBlock" VerticalAlignment="Bottom" Width="220" />
