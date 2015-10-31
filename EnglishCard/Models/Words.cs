@@ -1,14 +1,68 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Data.Linq;
+using System.Data.Linq.Mapping;
 
 
 namespace EnglishCard.Models
 {
-    public class Words : INotifyPropertyChanged
+    [Table]
+    public class Words : INotifyPropertyChanged, INotifyPropertyChanging
     {
-        public string originWord { get; set; }
-        public string translateWord { get; set; }
+        [Column(IsVersion = true)]
+        private Binary _version;
+
+        private int _wordId;
+
+        [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]
+        public int WordId
+        {
+            get { return _wordId; }
+            set
+            {
+                if (_wordId != value)
+                {
+                    NotifyPropertyChanging("WordId");
+                    _wordId = value;
+                    NotifyPropertyChanged("WordId");
+                }
+            }
+        }
+
+        private string _originWord;
+        [Column]
+        public string OriginWord
+        {
+            get { return _originWord; }
+            set
+            {
+                if (_originWord != value)
+                {
+                    NotifyPropertyChanging("OriginWord");
+                    _originWord = value;
+                    NotifyPropertyChanged("OriginWord");
+                }
+            }
+        }
+
+        public string _translateWord;
+        [Column]
+        public string TranslateWord
+        {
+            get { return _translateWord; }
+            set
+            {
+                if (_translateWord != value)
+                {
+                    NotifyPropertyChanging("TranslateWord");
+                    _translateWord = value;
+                    NotifyPropertyChanged("TranslateWord");
+                }
+            }
+        }
+
         private bool _flagKnowledge;
+        [Column]
         public bool FlagKnowledge
         {
             get
@@ -19,12 +73,15 @@ namespace EnglishCard.Models
             {
                 if (value != _flagKnowledge)
                 {
+                    NotifyPropertyChanging("FlagKnowledge");
                     _flagKnowledge = value;
                     NotifyPropertyChanged("FlagKnowledge");
                 }
             }
         }
+
         private int _countTest;
+        [Column]
         public int CountTest
         {
             get
@@ -35,13 +92,16 @@ namespace EnglishCard.Models
             {
                 if (value != _countTest)
                 {
+                    NotifyPropertyChanging("CountTest");
                     _countTest = value;
                     NotifyPropertyChanged("CountTest");
                 }
 
             }
         }
+
         private int _countSuccessTest;
+        [Column]
         public int CountSuccessTest
         {
             get
@@ -52,11 +112,14 @@ namespace EnglishCard.Models
             {
                 if (value != _countSuccessTest)
                 {
+                    NotifyPropertyChanging("CountSuccessTest");
                     _countSuccessTest = value;
                     NotifyPropertyChanged("CountSuccessTest");
                 }
             }
         }
+        #region INotifyPropertyChanged Members 
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged(String propertyName)
@@ -68,10 +131,31 @@ namespace EnglishCard.Models
             }
 
         }
-        public Words GetCopy()
+        #endregion
+
+        #region INotifyPropertyChanging Members
+
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        // Used to notify that a property is about to change
+        private void NotifyPropertyChanging(string propertyName)
         {
-            Words copy = (Words)this.MemberwiseClone();
-            return copy;
+            if (PropertyChanging != null)
+            {
+                PropertyChanging(this, new PropertyChangingEventArgs(propertyName));
+            }
         }
+
+        #endregion
+
+    }
+    public class Dictionary : DataContext
+    {
+        // Pass the connection string to the base class.
+        public Dictionary(string connectionString) : base(connectionString)
+        { }
+
+        // Specify a table for the to-do items.
+        public Table<Words> Dict;
     }
 }
