@@ -30,7 +30,7 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
                 <TextBlock Text="Слово" Height="67" Margin="0,0,269,0" Foreground="White" FontFamily="Kalinga" FontSize="32"/>
-                <TextBox x:Name="newWord" TextChanged="newWord_TextChanged"/>
+                <TextBox x:Name="newWord"/>
                 <TextBlock Text="Перевод" Height="67" Margin="0,0,269,0" Foreground="White" FontFamily="Kalinga" FontSize="32"/>
                 <TextBox x:Name="translateWord"/>
             </StackPanel>
@@ -38,9 +38,9 @@
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomAdd.png" Text="Добавить" Click="addNewWord"/>
-            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomRemove.png" Text="Удалить" Click="removeCheckedWords"/>
-            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomAdd.png" Text="Назад" Click="addNewWord"/>
+            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomAdd.png" Text="Добавить" />
+            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomRemove.png" Text="Удалить" />
+            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomAdd.png" Text="Назад" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

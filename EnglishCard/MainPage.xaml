@@ -7,7 +7,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -30,7 +29,7 @@
 
         <!--ContentPanel contains LongListSelector and LongListSelector ItemTemplate. Place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox ItemsSource="{Binding Items}">
+            <ListBox ItemsSource="{Binding}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -40,11 +39,11 @@
                                 <ColumnDefinition Width="80"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Margin="0,0,0,17">
-                                <TextBlock Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                <TextBlock Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                <TextBlock Text="{Binding}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                <TextBlock Text="{Binding}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                             </StackPanel>
                             <TextBlock Grid.Column="1" x:Name="procentKnowledge" Text="1" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                            <CheckBox Grid.Column="2" x:Name="flagForDelete" Checked="CheckBox_Checked" />
+                            <CheckBox Grid.Column="2" x:Name="flagForDelete" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -63,9 +62,9 @@
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomAdd.png" Text="Добавить" Click="addNewWord"/>
-            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomRemove.png" Text="Удалить" Click="removeCheckedWords"/>
-            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomAdd.png" Text="Назад" Click="addNewWord"/>
+            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomAdd.png" Text="Добавить" />
+            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomRemove.png" Text="Удалить" />
+            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomAdd.png" Text="Назад" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>
