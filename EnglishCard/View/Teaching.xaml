@@ -22,15 +22,16 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="English Cards" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="ENGLISH CARDS" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="Учим" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBlock x:Name="textBlock1"  Foreground="LightGray" FontFamily="Courier New" FontSize="40" Text="I am a TextBlock" HorizontalAlignment="Center" Margin="10,287,10,347" Width="436" />
-            <Button x:Name="know" Content="Знаю" Margin="10,552,251,44" RenderTransformOrigin="0.5,0.5"/>
-            <Button x:Name="unknow" Content="Не знаю" Margin="250,552,10,44" RenderTransformOrigin="0.38,0.481"/>
+        <Grid x:Name="ContentPanel" Grid.Row="1">
+            <TextBlock x:Name="textBlock1"  Foreground="LightGray" FontFamily="Courier New" FontSize="40" Text="I am a TextBlock" HorizontalAlignment="Center" Margin="51,0,51,275" Width="378" Height="125" VerticalAlignment="Bottom" />
+            <Button x:Name="know" Content="Знаю" Margin="10,408,251,0" RenderTransformOrigin="0.542,-0.108" Height="117" VerticalAlignment="Top"/>
+            <Button x:Name="unknow" Content="Не знаю" Margin="250,408,10,10" RenderTransformOrigin="0.38,0.481"/>
+
         </Grid>
 
     </Grid>
