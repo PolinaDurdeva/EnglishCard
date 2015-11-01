@@ -155,7 +155,7 @@ namespace EnglishCard.Models
         public Dictionary(string connectionString) : base(connectionString)
         { }
 
-        // Specify a table for the to-do items.
+        // Specify a table for the words.
         public Table<Words> Dict;
     }
 }
