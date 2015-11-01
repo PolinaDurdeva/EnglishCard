@@ -22,25 +22,24 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="English Cards" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="Добавить новое слово" Margin="10,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Height="99"/>
+            <TextBlock Text="ENGLISH CARDS" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="Добавить слово" Margin="10,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Height="99"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
                 <TextBlock Text="Слово" Height="67" Margin="0,0,269,0" Foreground="White" FontFamily="Kalinga" FontSize="32"/>
-                <TextBox x:Name="newWord"/>
+                <TextBox x:Name="newOriginWordTextBox"/>
                 <TextBlock Text="Перевод" Height="67" Margin="0,0,269,0" Foreground="White" FontFamily="Kalinga" FontSize="32"/>
-                <TextBox x:Name="translateWord"/>
+                <TextBox x:Name="newTranslateWordTextBox"/>
             </StackPanel>
         </Grid>
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomAdd.png" Text="Добавить" />
-            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomRemove.png" Text="Удалить" />
-            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomAdd.png" Text="Назад" />
+            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomAdd.png" Text="Сохранить" Click="appBarOkButton_Click" />
+            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomRemove.png" Text="Отменить" Click="appBarCancelButton_Click" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
