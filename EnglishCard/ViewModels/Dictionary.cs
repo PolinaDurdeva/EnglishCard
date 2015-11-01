@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using EnglishCard.Models;
+using EnglishCard.Model;
 using EnglishCard.Resources;
 using System;
 // Directive for the data model.
@@ -20,9 +20,9 @@ namespace EnglishCard.ViewModels
             dictionaryDB = new Dictionary(stringInDictionary);
         }
 
-        private ObservableCollection<Words> _allWords;
+        private ObservableCollection<Word> _allWords;
 
-        public ObservableCollection<Words> AllWords
+        public ObservableCollection<Word> AllWords
         {
             get { return _allWords; }
             set
@@ -32,9 +32,9 @@ namespace EnglishCard.ViewModels
             }
         }
 
-        private ObservableCollection<Words> _knownWords;
+        private ObservableCollection<Word> _knownWords;
 
-        public ObservableCollection<Words> KnownWords
+        public ObservableCollection<Word> KnownWords
         {
             get { return _knownWords; }
             set
@@ -44,9 +44,9 @@ namespace EnglishCard.ViewModels
             }
         }
 
-        private ObservableCollection<Words> _unKnownWords;
+        private ObservableCollection<Word> _unKnownWords;
 
-        public ObservableCollection<Words> UnKnownWords
+        public ObservableCollection<Word> UnKnownWords
         {
             get { return _unKnownWords; }
             set
@@ -65,26 +65,26 @@ namespace EnglishCard.ViewModels
         {
 
             // Specify the query for all words in the database.
-            var wordsInDB = from Words word in dictionaryDB.Dict
+            var wordsInDB = from Word word in dictionaryDB.Dict
                             select word;
 
             // Query the database and load all words.
-            AllWords = new ObservableCollection<Words>(wordsInDB);
+            AllWords = new ObservableCollection<Word>(wordsInDB);
             // Query the database and load unknown words.
-            var unknownWordsInDB = from Words word in dictionaryDB.Dict
+            var unknownWordsInDB = from Word word in dictionaryDB.Dict
                                    where word.FlagKnowledge == false
                                    select word;
             
-            UnKnownWords = new ObservableCollection<Words>(unknownWordsInDB);
+            UnKnownWords = new ObservableCollection<Word>(unknownWordsInDB);
 
             // Query the database and load known words.
-            var knownWordInDb = from Words word in dictionaryDB.Dict
+            var knownWordInDb = from Word word in dictionaryDB.Dict
                                 where word.FlagKnowledge == true
                                 select word;
-            KnownWords = new ObservableCollection<Words>(knownWordInDb);
+            KnownWords = new ObservableCollection<Word>(knownWordInDb);
         }
         // Add a word to the database and collections.
-        public void AddWord(Words newWords)
+        public void AddWord(Word newWords)
         {
             // Add a word to the data context.
             dictionaryDB.Dict.InsertOnSubmit(newWords);
@@ -99,7 +99,7 @@ namespace EnglishCard.ViewModels
         }
 
         // Remove a word from the database and collections.
-        public void DeleteWord(Words wordForDelete)
+        public void DeleteWord(Word wordForDelete)
         {
 
             // Remove the word from the "all" observable collection.

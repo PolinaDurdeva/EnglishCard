@@ -4,26 +4,26 @@ using System.Data.Linq;
 using System.Data.Linq.Mapping;
 
 
-namespace EnglishCard.Models
+namespace EnglishCard.Model
 {
     [Table]
-    public class Words : INotifyPropertyChanged, INotifyPropertyChanging
+    public class Word : INotifyPropertyChanged, INotifyPropertyChanging
     {
         [Column(IsVersion = true)]
         private Binary _version;
 
-        private int _wordId;
+        private int _Id;
 
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]
-        public int WordId
+        public int Id
         {
-            get { return _wordId; }
+            get { return _Id; }
             set
             {
-                if (_wordId != value)
+                if (_Id != value)
                 {
                     NotifyPropertyChanging("WordId");
-                    _wordId = value;
+                    _Id = value;
                     NotifyPropertyChanged("WordId");
                 }
             }
@@ -156,6 +156,6 @@ namespace EnglishCard.Models
         { }
 
         // Specify a table for the words.
-        public Table<Words> Dict;
+        public Table<Word> Dict;
     }
 }

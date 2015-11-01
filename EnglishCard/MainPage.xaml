@@ -29,7 +29,23 @@
 
         <!--ContentPanel contains LongListSelector and LongListSelector ItemTemplate. Place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0*" />
+                <ColumnDefinition Width="6*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Grid.Column="1" Name ="bTraining" Click="bTraining_Click">
+                <TextBlock Text="Training" FontSize="40"  />
+            </Button>
+            <Button Grid.Row="1" Grid.Column="1" Name="bDictionary" Click="bDictionary_Click">
+                <TextBlock Text="Dictionary" FontSize="40"  />
+            </Button>
+            <Button Grid.Row="2" Grid.Column="1" Name="bSettings" Click="bSettings_Click">
+                <TextBlock Text="Settings" FontSize="40"  /></Button>
         </Grid>
     </Grid>
 </phone:PhoneApplicationPage>

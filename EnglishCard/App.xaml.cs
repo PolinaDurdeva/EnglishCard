@@ -7,7 +7,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using EnglishCard.Resources;
-using EnglishCard.Models;
+using EnglishCard.Model;
 using EnglishCard.ViewModels;
 
 

@@ -9,7 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using EnglishCard.Resources;
 using EnglishCard.ViewModels;
-using EnglishCard.Models;
+using EnglishCard.Model;
 
 namespace EnglishCard
 {
@@ -25,5 +25,19 @@ namespace EnglishCard
 
         }
 
+        private void bTraining_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/View/Teaching.xaml", UriKind.Relative));
+        }
+
+        private void bDictionary_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/View/Dictionary.xaml", UriKind.Relative));
+        }
+
+        private void bSettings_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
