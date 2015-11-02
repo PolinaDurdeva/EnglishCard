@@ -38,9 +38,8 @@
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomAdd.png" Text="Сохранить" Click="appBarOkButton_Click" />
-            <shell:ApplicationBarIconButton IconUri="/Icon/ButtomRemove.png" Text="Отменить" Click="appBarCancelButton_Click" />
+            <shell:ApplicationBarIconButton IconUri="/Icon/add.png" Text="Сохранить" Click="appBarOkButton_Click" />
+            <shell:ApplicationBarIconButton IconUri="/Icon/delete.png" Text="Отменить" Click="appBarCancelButton_Click" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
-
 </phone:PhoneApplicationPage>

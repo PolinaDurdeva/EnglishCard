@@ -47,15 +47,66 @@
             </phone:PivotItem>
 
             <!--Pivot item two-->
-            <phone:PivotItem Header="Результаты">
-                <Grid/>
+            <phone:PivotItem Header="Результаты" Margin="10,10,14,18">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.Resources>
+                            <Style x:Key="LabelStyle" TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Right"/>
+                                <Setter Property="Margin" Value="15,5" />
+                            </Style>
+                            <Style x:Key="ValueStyle" TargetType="TextBlock">
+                                <Setter Property="Margin" Value="15,5" />
+                            </Style>
+                        </Grid.Resources>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="27*" />
+                            <ColumnDefinition Width="21*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                              Style="{StaticResource PhoneTextLargeStyle}"
+                              Text="Всего слов:"
+                              HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1"
+                              Style="{StaticResource PhoneTextTitle1Style}" 
+                              Text="" />
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                              Style="{StaticResource PhoneTextLargeStyle}"
+                              Text="Всего тестов:" Padding="0,0,0,25"
+                              HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Padding="0,0,0,25"
+                              Style="{StaticResource PhoneTextTitle1Style}" 
+                              Text=""/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" 
+                              Style="{StaticResource LabelStyle}"
+                              Text="Выученных слов:" FontSize="29.333" />
+                        <TextBlock Grid.Row="2" Grid.Column="1"
+                              Style="{StaticResource ValueStyle}"
+                              Text=""/>
+                        <TextBlock Grid.Row="3" Grid.Column="0"
+                              Style="{StaticResource LabelStyle}"
+                              Text="Успешных тестов:" FontSize="29.333" Margin="0,50,15,-40" />
+                        <TextBlock Grid.Row="3" Grid.Column="1"
+                              Style="{StaticResource ValueStyle}"
+                              Text="" />
+
+                    </Grid>
+                </ScrollViewer>
             </phone:PivotItem>
         </phone:Pivot>
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton IconUri="/Icon/add.png" Text="Добавить" Click="newWordButtom_Click"/>
-            <shell:ApplicationBarIconButton IconUri="/Icon/back.png" Text="Назад" Click="returnOnPageButtom_Click"/>
         </shell:ApplicationBar> 
     </phone:PhoneApplicationPage.ApplicationBar>
    
