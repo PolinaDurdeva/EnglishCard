@@ -23,17 +23,19 @@ namespace EnglishCard.View
         private void appBarOkButton_Click(object sender, EventArgs e)
         {
             // Confirm there is some text in the text box.
-            if (newOriginWordTextBox.Text.Length > 0)
+            if (tbNewOriginWord.Text.Length > 0)
             {
                 // Create a new word.
                 Word newWord = new Word
                 {
-                    OriginWord = newOriginWordTextBox.Text,
-                    TranslateWord = newTranslateWordTextBox.Text,                   
+                    OriginWord = tbNewOriginWord.Text,
+                    TranslateWord = tbNewTranslateWord.Text,                   
                 };
 
                 // Add the item to the ViewModel.
                 App.ViewModel.AddWord(newWord);
+                App.ViewModel.LoadCollectionsFromDatabase();
+                
 
                 // Return to the main page.
                 if (NavigationService.CanGoBack)

@@ -34,9 +34,9 @@
                                     <TextBlock Text="{Binding OriginWord}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
                                     <TextBlock Text="{Binding TranslateWord}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                                 </StackPanel>
-                                <TextBlock Grid.Column="1" x:Name="countTestTextBox" Text="{Binding CountTest}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="24"/>
+                                <TextBlock Grid.Column="1" x:Name="tbEffortsNumber" Text="{Binding EffortsNumber}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="24"/>
                                 <TextBlock Grid.Column="2" Text="/" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="#FFFFFCFC" FontSize="24"/>
-                                <TextBlock Grid.Column="3" x:Name="countSuccessTestTextBox" Text="{Binding CountSuccessTest}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="24"/>
+                                <TextBlock Grid.Column="3" x:Name="tbSuccessfulEffortsNumber" Text="{Binding SuccessfulEffortsNumber}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="24"/>
                                 <Button Grid.Column="4" x:Name="deleteWordsButton" Click="deleteWordsButton_Click">
                                    <Image Source="/Icon/delete.png" Height="75" Width="75"/>
                                 </Button>

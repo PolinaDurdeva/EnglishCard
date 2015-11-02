@@ -30,9 +30,9 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
                 <TextBlock Text="Слово" Height="67" Margin="0,0,269,0" Foreground="White" FontFamily="Kalinga" FontSize="32"/>
-                <TextBox x:Name="newOriginWordTextBox"/>
+                <TextBox x:Name="tbNewOriginWord"/>
                 <TextBlock Text="Перевод" Height="67" Margin="0,0,269,0" Foreground="White" FontFamily="Kalinga" FontSize="32"/>
-                <TextBox x:Name="newTranslateWordTextBox"/>
+                <TextBox x:Name="tbNewTranslateWord"/>
             </StackPanel>
         </Grid>
     </Grid>

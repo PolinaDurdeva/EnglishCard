@@ -72,7 +72,7 @@ namespace EnglishCard.ViewModels
             // Query the database and load all words.
             AllWords = new ObservableCollection<Word>(wordsInDB);
             // Query the database and load unknown words.
-            var unknownWordsInDB = dictionaryDB.Words.Where(word => word.SuccessfulEffortsNumber>3);
+            var unknownWordsInDB = dictionaryDB.Words.Where(word => word.SuccessfulEffortsNumber<=3);
             //var unknownWordsInDB = from Word word in dictionaryDB.Words where !word.FlagKnowledge select word;
             UnKnownWords = new ObservableCollection<Word>(unknownWordsInDB);
             //var knownWordsInDB = from Word word in dictionaryDB.Words where word.FlagKnowledge select word;

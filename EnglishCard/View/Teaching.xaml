@@ -34,10 +34,10 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="tWord" Grid.Row="0" Text="Word" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50"/>
-            <Button Grid.Row="1">Translation1</Button>
-            <Button Grid.Row="2">Translation2</Button>
-            <Button Grid.Row="3">Translation3</Button>
+            <TextBlock x:Name="tWord" Grid.Row="0" Text="{Binding Word}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50"/>
+            <Button Grid.Row="1" x:Name="bTranslate1" Click="bTranslate1Button_Clic">Translation1</Button>
+            <Button Grid.Row="2" x:Name="bTranslate2" Click="bTranslate2Button_Clic">Translation2</Button>
+            <Button Grid.Row="3" x:Name="bTranslate3" Click="bTranslate3Button_Clic">Translation3</Button>
     </Grid>
 
     </Grid>

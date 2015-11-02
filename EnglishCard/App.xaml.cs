@@ -75,10 +75,12 @@ namespace EnglishCard
             }
             using (Dictionary db = new Dictionary(Dictionary.DBConnectionString))
             {
-                if (db.DatabaseExists() == false)
+                if (!db.DatabaseExists())
+                    db.CreateDatabase();
+                /*if (db.DatabaseExists() == false)
                 {
                     throw new Exception("Database not found");
-                }
+                }*/
             }
             viewModel = new DictionaryViewModel(Dictionary.DBConnectionString);
 
