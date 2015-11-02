@@ -63,31 +63,30 @@ namespace EnglishCard.ViewModels
         // Query database and load the collections and list used by the pivot pages.
         public void LoadCollectionsFromDatabase()
         {
-
+            
             // Specify the query for all words in the database.
-            var wordsInDB = from Word word in dictionaryDB.Dict
-                            select word;
+            var wordsInDB = dictionaryDB.Words.Where(_ => true);
+
+            /* Not implemented yet
 
             // Query the database and load all words.
             AllWords = new ObservableCollection<Word>(wordsInDB);
             // Query the database and load unknown words.
-            var unknownWordsInDB = from Word word in dictionaryDB.Dict
-                                   where word.FlagKnowledge == false
-                                   select word;
+            var unknownWordsInDB = dictionaryDB.Words.Where(word => !word.FlagKnowledge);
             
             UnKnownWords = new ObservableCollection<Word>(unknownWordsInDB);
 
             // Query the database and load known words.
-            var knownWordInDb = from Word word in dictionaryDB.Dict
-                                where word.FlagKnowledge == true
-                                select word;
-            KnownWords = new ObservableCollection<Word>(knownWordInDb);
+            var knownWordsInDB = dictionaryDB.Words.Where(word => word.FlagKnowledge);
+            KnownWords = new ObservableCollection<Word>(knownWordsInDB);
+            */
         }
+
         // Add a word to the database and collections.
         public void AddWord(Word newWords)
         {
             // Add a word to the data context.
-            dictionaryDB.Dict.InsertOnSubmit(newWords);
+            dictionaryDB.Words.InsertOnSubmit(newWords);
 
             // Save changes to the database.
             dictionaryDB.SubmitChanges();
@@ -106,7 +105,7 @@ namespace EnglishCard.ViewModels
             AllWords.Remove(wordForDelete);
 
             // Remove the word from the data context.
-            dictionaryDB.Dict.DeleteOnSubmit(wordForDelete);
+            dictionaryDB.Words.DeleteOnSubmit(wordForDelete);
 
             // Remove the word from the appropriate category.   
             switch (wordForDelete.FlagKnowledge)

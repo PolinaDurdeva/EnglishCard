@@ -34,7 +34,7 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Word" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50"/>
+            <TextBlock x:Name="tWord" Grid.Row="0" Text="Word" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50"/>
             <Button Grid.Row="1">Translation1</Button>
             <Button Grid.Row="2">Translation2</Button>
             <Button Grid.Row="3">Translation3</Button>
