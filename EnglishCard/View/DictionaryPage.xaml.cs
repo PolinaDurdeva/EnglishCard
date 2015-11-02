@@ -25,14 +25,6 @@ namespace EnglishCard.View
             NavigationService.Navigate(new Uri("/View/AddingNewWords.xaml", UriKind.Relative));
         }
 
-        private void returnOnPageButtom_Click(object sender, EventArgs e)
-        {
-            if (NavigationService.CanGoBack)
-            {
-                NavigationService.GoBack();
-            }
-        }
-
         private void deleteWordsButton_Click(object sender, RoutedEventArgs e)
         {
             // Cast the parameter as a button.
