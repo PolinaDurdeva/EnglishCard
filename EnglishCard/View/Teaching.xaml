@@ -22,7 +22,7 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="English Cards" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="ENGLISH CARDS" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="Учим" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
 
@@ -38,7 +38,7 @@
             <Button Grid.Row="1">Translation1</Button>
             <Button Grid.Row="2">Translation2</Button>
             <Button Grid.Row="3">Translation3</Button>
-        </Grid>
+    </Grid>
 
     </Grid>
 

@@ -61,7 +61,7 @@ namespace EnglishCard.Model
             }
         }
 
-        private bool _flagKnowledge;
+        private bool _flagKnowledge = false;
         [Column]
         public bool FlagKnowledge
         {
@@ -80,7 +80,7 @@ namespace EnglishCard.Model
             }
         }
 
-        private int _countTest;
+        private int _countTest = 0;
         [Column]
         public int CountTest
         {
@@ -100,7 +100,7 @@ namespace EnglishCard.Model
             }
         }
 
-        private int _countSuccessTest;
+        private int _countSuccessTest = 0;
         [Column]
         public int CountSuccessTest
         {
