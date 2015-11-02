@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using EnglishCard.ViewModels;
-using EnglishCard.Models;
+using EnglishCard.Model;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -41,7 +41,7 @@ namespace EnglishCard.View
             if (button != null)
             {
                 // Get a handle for the to-do item bound to the button.
-                Words wordForDelete = button.DataContext as Words;
+                Word wordForDelete = button.DataContext as Word;
 
                 App.ViewModel.DeleteWord(wordForDelete);
             }

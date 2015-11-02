@@ -32,7 +32,7 @@ namespace EnglishCard
 
         private void bDictionary_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/View/Dictionary.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/View/DictionaryPage.xaml", UriKind.Relative));
         }
 
         private void bSettings_Click(object sender, RoutedEventArgs e)

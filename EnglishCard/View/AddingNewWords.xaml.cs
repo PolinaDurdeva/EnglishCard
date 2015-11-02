@@ -1,6 +1,6 @@
 ﻿using System;
 using EnglishCard.ViewModels;
-using EnglishCard.Models;
+using EnglishCard.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -26,7 +26,7 @@ namespace EnglishCard.View
             if (newOriginWordTextBox.Text.Length > 0)
             {
                 // Create a new word.
-                Words newWord = new Words
+                Word newWord = new Word
                 {
                     OriginWord = newOriginWordTextBox.Text,
                     TranslateWord = newTranslateWordTextBox.Text,                   
