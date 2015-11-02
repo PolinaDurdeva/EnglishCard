@@ -20,8 +20,8 @@ namespace EnglishCard.View
             this.DataContext = App.ViewModel;
             tbCountWords.Text = App.ViewModel.AllWords.Count.ToString();
             tbCountKnownWords.Text = App.ViewModel.KnownWords.Count.ToString();
-            tdCountTests.Text = App.ViewModel.AllWords.Sum(wrd => wrd.CountTest).ToString();
-            tbCountSuccessTests.Text = App.ViewModel.AllWords.Sum(wrd => wrd.CountSuccessTest).ToString();
+            tdCountTests.Text = App.ViewModel.AllWords.Sum(wrd => wrd.EffortsNumber).ToString();
+            tbCountSuccessTests.Text = App.ViewModel.AllWords.Sum(wrd => wrd.SuccessfulEffortsNumber).ToString();
         }
 
         private void newWordButtom_Click(object sender, EventArgs e)

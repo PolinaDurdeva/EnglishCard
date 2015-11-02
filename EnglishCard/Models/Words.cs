@@ -96,12 +96,12 @@ namespace EnglishCard.Model
                 }
             }
         }
-
+        
         public bool FlagKnowledge
         {
             get
             {
-                return _successfulEffortsNumber > 0 && _successfulEffortsNumber / _effortsNumber > 0.5 && _effortsNumber > 3;
+                return _successfulEffortsNumber > 0 && _successfulEffortsNumber / _effortsNumber > 0.5 && _effortsNumber > 3; 
             }
         }
         #region INotifyPropertyChanged Members 
@@ -142,16 +142,17 @@ namespace EnglishCard.Model
         // Pass the connection string to the base class.
         public Dictionary(string connectionString) : base(connectionString)
         {
-            this.Dict = this.GetTable<Word>();
+            
+            this.Words = this.GetTable<Word>();
         }
 
         // Specify a table for the words.
-        public Table<Word> Words
-        {
-            get
-            {
-                return this.GetTable<Word>();
-            }
-        }
+        public Table<Word> Words;
+        //{
+          //  get
+          //  {
+          //      return this.GetTable<Word>();
+          //   }
+        //}
     }
 }

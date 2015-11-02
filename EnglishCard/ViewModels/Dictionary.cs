@@ -63,23 +63,23 @@ namespace EnglishCard.ViewModels
         // Query database and load the collections and list used by the pivot pages.
         public void LoadCollectionsFromDatabase()
         {
-            
+
             // Specify the query for all words in the database.
             var wordsInDB = dictionaryDB.Words.Where(_ => true);
-
-            /* Not implemented yet
+            //var wordsInDB = from Word word in dictionaryDB.Words select word;
+            //Not implemented yet
 
             // Query the database and load all words.
             AllWords = new ObservableCollection<Word>(wordsInDB);
             // Query the database and load unknown words.
-            var unknownWordsInDB = dictionaryDB.Words.Where(word => !word.FlagKnowledge);
-            
+            var unknownWordsInDB = dictionaryDB.Words.Where(word => word.SuccessfulEffortsNumber>3);
+            //var unknownWordsInDB = from Word word in dictionaryDB.Words where !word.FlagKnowledge select word;
             UnKnownWords = new ObservableCollection<Word>(unknownWordsInDB);
-
+            //var knownWordsInDB = from Word word in dictionaryDB.Words where word.FlagKnowledge select word;
             // Query the database and load known words.
-            var knownWordsInDB = dictionaryDB.Words.Where(word => word.FlagKnowledge);
+            var knownWordsInDB = dictionaryDB.Words.Where(word => word.SuccessfulEffortsNumber >3);
             KnownWords = new ObservableCollection<Word>(knownWordsInDB);
-            */
+            
         }
 
         // Add a word to the database and collections.
