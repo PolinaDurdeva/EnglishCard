@@ -73,16 +73,14 @@ namespace EnglishCard
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-            string DBConnectionString = "Data Source=isostore:/ToDo.sdf";
-            using (Dictionary db = new Dictionary(DBConnectionString))
+            using (Dictionary db = new Dictionary(Dictionary.DBConnectionString))
             {
                 if (db.DatabaseExists() == false)
                 {
-                    // Create the local database.
-                    db.CreateDatabase();
+                    throw new Exception("Database not found");
                 }
             }
-            viewModel = new DictionaryViewModel(DBConnectionString);
+            viewModel = new DictionaryViewModel(Dictionary.DBConnectionString);
 
             // Query the local database and load observable collections.
             viewModel.LoadCollectionsFromDatabase();

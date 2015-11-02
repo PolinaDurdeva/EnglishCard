@@ -9,13 +9,10 @@ namespace EnglishCard.Model
     [Table]
     public class Word : INotifyPropertyChanged, INotifyPropertyChanging
     {
-        [Column(IsVersion = true)]
-        private Binary _version;
-
         private int _Id;
 
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]
-        public int Id
+        public int WordId
         {
             get { return _Id; }
             set
@@ -61,61 +58,50 @@ namespace EnglishCard.Model
             }
         }
 
-        private bool _flagKnowledge = false;
+        private int _effortsNumber = 0;
         [Column]
-        public bool FlagKnowledge
+        public int EffortsNumber
         {
             get
             {
-                return _flagKnowledge;
+                return _effortsNumber;
             }
             set
             {
-                if (value != _flagKnowledge)
-                {
-                    NotifyPropertyChanging("FlagKnowledge");
-                    _flagKnowledge = value;
-                    NotifyPropertyChanged("FlagKnowledge");
-                }
-            }
-        }
-
-        private int _countTest = 0;
-        [Column]
-        public int CountTest
-        {
-            get
-            {
-                return _countTest;
-            }
-            set
-            {
-                if (value != _countTest)
+                if (value != _effortsNumber)
                 {
                     NotifyPropertyChanging("CountTest");
-                    _countTest = value;
+                    _effortsNumber = value;
                     NotifyPropertyChanged("CountTest");
                 }
 
             }
         }
 
-        private int _countSuccessTest = 0;
+        private int _successfulEffortsNumber = 0;
         [Column]
-        public int CountSuccessTest
+        public int SuccessfulEffortsNumber
         {
             get
             {
-                return _countSuccessTest;
+                return _successfulEffortsNumber;
             }
             set
             {
-                if (value != _countSuccessTest)
+                if (value != _successfulEffortsNumber)
                 {
                     NotifyPropertyChanging("CountSuccessTest");
-                    _countSuccessTest = value;
+                    _successfulEffortsNumber = value;
                     NotifyPropertyChanged("CountSuccessTest");
                 }
+            }
+        }
+
+        public bool FlagKnowledge
+        {
+            get
+            {
+                return _successfulEffortsNumber > 0 && _successfulEffortsNumber / _effortsNumber > 0.5 && _effortsNumber > 3;
             }
         }
         #region INotifyPropertyChanged Members 
@@ -149,8 +135,10 @@ namespace EnglishCard.Model
         #endregion
 
     }
+
     public class Dictionary : DataContext
     {
+        public static string DBConnectionString = "Data Source=appdata:/Dictionary.sdf";
         // Pass the connection string to the base class.
         public Dictionary(string connectionString) : base(connectionString)
         {
@@ -158,6 +146,12 @@ namespace EnglishCard.Model
         }
 
         // Specify a table for the words.
-        public Table<Word> Dict;
+        public Table<Word> Words
+        {
+            get
+            {
+                return this.GetTable<Word>();
+            }
+        }
     }
 }
