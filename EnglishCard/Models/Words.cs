@@ -153,7 +153,9 @@ namespace EnglishCard.Model
     {
         // Pass the connection string to the base class.
         public Dictionary(string connectionString) : base(connectionString)
-        { }
+        {
+            this.Dict = this.GetTable<Word>();
+        }
 
         // Specify a table for the words.
         public Table<Word> Dict;

@@ -17,7 +17,11 @@ namespace EnglishCard.View
         public DictionaryPage()
         {
             InitializeComponent();
-            DataContext = App.ViewModel;
+            this.DataContext = App.ViewModel;
+            tbCountWords.Text = App.ViewModel.AllWords.Count.ToString();
+            tbCountKnownWords.Text = App.ViewModel.KnownWords.Count.ToString();
+            tdCountTests.Text = App.ViewModel.AllWords.Sum(wrd => wrd.CountTest).ToString();
+            tbCountSuccessTests.Text = App.ViewModel.AllWords.Sum(wrd => wrd.CountSuccessTest).ToString();
         }
 
         private void newWordButtom_Click(object sender, EventArgs e)

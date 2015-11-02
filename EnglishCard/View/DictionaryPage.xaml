@@ -77,27 +77,29 @@
                               Text="Всего слов:"
                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         <TextBlock Grid.Row="0" Grid.Column="1"
+                              x:Name="tbCountWords"
                               Style="{StaticResource PhoneTextTitle1Style}" 
-                              Text="" />
+                              />
                         <TextBlock Grid.Row="1" Grid.Column="0"
                               Style="{StaticResource PhoneTextLargeStyle}"
                               Text="Всего тестов:" Padding="0,0,0,25"
                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         <TextBlock Grid.Row="1" Grid.Column="1" Padding="0,0,0,25"
                               Style="{StaticResource PhoneTextTitle1Style}" 
-                              Text=""/>
+                              x:Name="tdCountTests"/>
                         <TextBlock Grid.Row="2" Grid.Column="0" 
                               Style="{StaticResource LabelStyle}"
                               Text="Выученных слов:" FontSize="29.333" />
                         <TextBlock Grid.Row="2" Grid.Column="1"
                               Style="{StaticResource ValueStyle}"
-                              Text=""/>
+                              x:Name="tbCountKnownWords"
+                              />
                         <TextBlock Grid.Row="3" Grid.Column="0"
                               Style="{StaticResource LabelStyle}"
                               Text="Успешных тестов:" FontSize="29.333" Margin="0,50,15,-40" />
                         <TextBlock Grid.Row="3" Grid.Column="1"
                               Style="{StaticResource ValueStyle}"
-                              Text="" />
+                              x:Name="tbCountSuccessTests" />
 
                     </Grid>
                 </ScrollViewer>
