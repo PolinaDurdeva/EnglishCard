@@ -108,7 +108,7 @@ namespace EnglishCard.ViewModels
             dictionaryDB.Words.DeleteOnSubmit(wordForDelete);
 
             // Remove the word from the appropriate category.   
-            switch (wordForDelete.FlagKnowledge)
+            switch (wordForDelete.isKnown())
             {
                 case true:
                     KnownWords.Remove(wordForDelete);

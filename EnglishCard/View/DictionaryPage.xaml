@@ -24,11 +24,11 @@
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="180"/>
-                                    <ColumnDefinition Width="40"/>
-                                    <ColumnDefinition Width="40"/>
-                                    <ColumnDefinition Width="40"/>
-                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Margin="0,0,0,17">
                                     <TextBlock Text="{Binding OriginWord}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>

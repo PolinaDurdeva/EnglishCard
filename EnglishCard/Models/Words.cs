@@ -9,18 +9,18 @@ namespace EnglishCard.Model
     [Table]
     public class Word : INotifyPropertyChanged, INotifyPropertyChanging
     {
-        private int _Id;
+        private int wordId;
 
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]
         public int WordId
         {
-            get { return _Id; }
+            get { return wordId; }
             set
             {
-                if (_Id != value)
+                if (wordId != value)
                 {
                     NotifyPropertyChanging("WordId");
-                    _Id = value;
+                    wordId = value;
                     NotifyPropertyChanged("WordId");
                 }
             }
@@ -97,12 +97,9 @@ namespace EnglishCard.Model
             }
         }
         
-        public bool FlagKnowledge
+        public bool isKnown()
         {
-            get
-            {
                 return _successfulEffortsNumber > 0 && _successfulEffortsNumber / _effortsNumber > 0.5 && _effortsNumber > 3; 
-            }
         }
         #region INotifyPropertyChanged Members 
 
