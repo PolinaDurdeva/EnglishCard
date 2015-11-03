@@ -139,8 +139,11 @@ namespace EnglishCard.Model
     public class Dictionary : DataContext
     {
         //public static string DBConnectionString = "Data Source=appdata:/Dictionary.sdf";
-        public static string DBConnectionString = @"isostore:/Dictionary.sdf";
+        public static string DBConnectionString = "/Dictionary.sdf";
         // Pass the connection string to the base class.
+
+        public Dictionary() : base(DBConnectionString) { }
+
         public Dictionary(string connectionString) : base(connectionString)
         {
             

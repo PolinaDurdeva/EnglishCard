@@ -73,14 +73,10 @@ namespace EnglishCard
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-            using (Dictionary db = new Dictionary(Dictionary.DBConnectionString))
+            using (Dictionary db = new Dictionary())
             {
                 if (!db.DatabaseExists())
-                    db.CreateDatabase();
-                /*if (db.DatabaseExists() == false)
-                {
                     throw new Exception("Database not found");
-                }*/
             }
             viewModel = new DictionaryViewModel(Dictionary.DBConnectionString);
 
