@@ -18,7 +18,8 @@ CSV.open("words_out.csv", "wb") do |csv|
 end
 
 File.open("insert_words.sql", "w") do |file|
+	file.write("INSERT INTO word(originWord, translateWord)\n")
 	words.each do |key, value|
-		file.write("INSERT INTO Dictionary VALUES (NULL, #{key}, #{value}, NULL, NULL)\n")
+		 file.write("SELECT \'#{key}\', \'#{value}\'\nUNION ALL\n")
 	end
 end
