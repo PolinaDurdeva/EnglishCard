@@ -12,9 +12,9 @@ using Microsoft.Phone.Shell;
 
 namespace EnglishCard.View
 {
-    public partial class DictionaryPage : PhoneApplicationPage
+    public partial class VocabularyView : PhoneApplicationPage
     {
-        public DictionaryPage()
+        public VocabularyView()
         {
             InitializeComponent();
             this.DataContext = App.ViewModel;

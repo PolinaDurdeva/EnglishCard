@@ -97,10 +97,13 @@ namespace EnglishCard.Model
             }
         }
         
+        // TODO: move away from model
         public bool isKnown()
         {
                 return _successfulEffortsNumber > 0 && _successfulEffortsNumber / _effortsNumber > 0.5 && _effortsNumber > 3; 
         }
+
+
         #region INotifyPropertyChanged Members 
 
         public event PropertyChangedEventHandler PropertyChanged;
