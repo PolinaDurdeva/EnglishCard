@@ -27,12 +27,12 @@ namespace EnglishCard
 
         private void bTraining_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/View/Teaching.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/View/TrainingView.xaml", UriKind.Relative));
         }
 
         private void bDictionary_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/View/DictionaryPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/View/VocabularyView.xaml", UriKind.Relative));
         }
 
         private void bSettings_Click(object sender, RoutedEventArgs e)
