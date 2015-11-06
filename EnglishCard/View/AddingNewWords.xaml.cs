@@ -1,5 +1,5 @@
 ﻿using System;
-using EnglishCard.ViewModels;
+using EnglishCard.ViewModel;
 using EnglishCard.Model;
 using System.Collections.Generic;
 using System.Linq;

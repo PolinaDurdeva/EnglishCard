@@ -132,28 +132,4 @@ namespace EnglishCard.Model
         #endregion
 
     }
-
-    public class Dictionary : DataContext
-    {
-        //public static string DBConnectionString = "Data Source=appdata:/Dictionary.sdf";
-        public static string DBConnectionString = "/Dictionary.sdf";
-        // Pass the connection string to the base class.
-
-        public Dictionary() : base(DBConnectionString) { }
-
-        public Dictionary(string connectionString) : base(connectionString)
-        {
-            
-            //this.Words = this.GetTable<Word>();
-        }
-
-        // Specify a table for the words.
-        public Table<Word> Words
-        {
-           get
-               {
-               return this.GetTable<Word>();
-               }
-        }
-    }
 }

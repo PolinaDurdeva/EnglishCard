@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using EnglishCard.ViewModels;
+using EnglishCard.ViewModel;
 using EnglishCard.Model;
 using System.Windows;
 using System.Windows.Controls;

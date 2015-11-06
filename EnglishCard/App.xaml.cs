@@ -8,20 +8,21 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using EnglishCard.Resources;
 using EnglishCard.Model;
-using EnglishCard.ViewModels;
+using EnglishCard.ViewModel;
 
 
 namespace EnglishCard
 {
     public partial class App : Application
     {
-        private static DictionaryViewModel viewModel;
+        private static VocabularyViewModel viewModel;
 
+        // TODO: Maybe it's a bad style?
         /// <summary>
         /// A static ViewModel used by the views to bind against.
         /// </summary>
         /// <returns>The MainViewModel object.</returns>
-        public static DictionaryViewModel ViewModel
+        public static VocabularyViewModel ViewModel
         {
             get
             {
@@ -73,12 +74,12 @@ namespace EnglishCard
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-            using (Dictionary db = new Dictionary())
+            using (DictionaryModel db = new DictionaryModel())
             {
                 if (!db.DatabaseExists())
                     throw new Exception("Database not found");
             }
-            viewModel = new DictionaryViewModel(Dictionary.DBConnectionString);
+            viewModel = new VocabularyViewModel(DictionaryModel.DBConnectionString);
 
             // Query the local database and load observable collections.
             viewModel.LoadCollectionsFromDatabase();

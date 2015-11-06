@@ -8,15 +8,15 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using EnglishCard.Resources;
-using EnglishCard.ViewModels;
+using EnglishCard.ViewModel;
 using EnglishCard.Model;
 
 namespace EnglishCard
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class MainView : PhoneApplicationPage
     {
         // Constructor
-        public MainPage()
+        public MainView()
         {
             InitializeComponent();
 

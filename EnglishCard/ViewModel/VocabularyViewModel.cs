@@ -9,15 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EnglishCard.ViewModels
+namespace EnglishCard.ViewModel
 {
-    public class DictionaryViewModel : INotifyPropertyChanged
+    public class VocabularyViewModel : INotifyPropertyChanged
     {
-        private Dictionary dictionaryDB;
+        private DictionaryModel dictionaryDB;
 
-        public DictionaryViewModel (string stringInDictionary)
+        public VocabularyViewModel (string stringInDictionary)
         {
-            dictionaryDB = new Dictionary(stringInDictionary);
+            dictionaryDB = new DictionaryModel(stringInDictionary);
         }
 
         private ObservableCollection<Word> _allWords;
