@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -18,36 +19,108 @@
         <!--Pivot Control-->
         <phone:Pivot Title="ENGLISH CARDS">
             <!--Pivot item one-->
-            <phone:PivotItem Header="Словарь">
-                <ListBox x:Name="wordsListBox" ItemsSource="{Binding AllWords}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="5*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                </Grid.ColumnDefinitions>
-                                <StackPanel Margin="0,0,0,17">
-                                    <TextBlock Text="{Binding OriginWord}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                    <TextBlock Text="{Binding TranslateWord}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                </StackPanel>
-                                <TextBlock Grid.Column="1" x:Name="tbEffortsNumber" Text="{Binding EffortsNumber}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="24"/>
-                                <TextBlock Grid.Column="2" Text="/" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="#FFFFFCFC" FontSize="24"/>
-                                <TextBlock Grid.Column="3" x:Name="tbSuccessfulEffortsNumber" Text="{Binding SuccessfulEffortsNumber}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="24"/>
-                                <Button Grid.Column="4" x:Name="deleteWordsButton" Click="deleteWordsButton_Click">
-                                   <Image Source="/Icon/delete.png" Height="75" Width="75"/>
-                                </Button>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+            <phone:PivotItem Header="Cards" FontSize="48">
+                <Grid HorizontalAlignment="Stretch" Width="420">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               x:Name="tbWordCardOrigin"
+                               Text="{Binding OriginWord}" 
+                               FontSize="{StaticResource PhoneFontSizeLarge}"                               
+                               VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Row="1"
+                               x:Name="tbWordCardTranslate"
+                               Text="{Binding TranslateWord}" 
+                               Style="{StaticResource PhoneTextSubtleStyle}"                              
+                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                    <Button Grid.Row="2"
+                            x:Name="nextWordButton"
+                            Content="Next"    
+                            Click="nextWord_Button_Click"
+                            Height="80" Width="200" 
+                            HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+
+                </Grid>
+            </phone:PivotItem>
+            <phone:PivotItem Header="Dictionary" FontSize="48">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="15*"/>
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row ="0"
+                             Name="Searchbox"  
+                             TextChanged="Searchbox_TextChanged"
+                             KeyDown ="searchbox_Key_Down"
+                             Width="400" Height="80"
+                             HorizontalAlignment="Left" VerticalAlignment="Top" 
+                             Grid.RowSpan="2" Margin="0,-9,0,0">
+                    </TextBox>
+                    <Image Grid.Row="0"
+                           Source="/Images/feature.search.png"
+                           Width="90" Height="100" 
+                           HorizontalAlignment="Right" VerticalAlignment="Top" 
+                           Margin="0,-6,0,0" Grid.RowSpan="2" />
+                    <ListBox Grid.Row ="1" 
+                             x:Name="lbWords" 
+                             ItemsSource="{Binding AllWords, Mode=TwoWay}" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Margin="0,0,0,17">
+                                        <TextBlock Grid.Column="0"
+                                               Text="{Binding OriginWord, Mode=TwoWay}" 
+                                               TextWrapping="Wrap" 
+                                               Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                        <TextBlock Grid.Column="0"
+                                               Text="{Binding TranslateWord, Mode=TwoWay}" 
+                                               TextWrapping="Wrap" Margin="12,-6,12,0" 
+                                               Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    </StackPanel>
+                                    <TextBlock Grid.Column="1" 
+                                           x:Name="tbEffortsNumber" 
+                                           Text="{Binding EffortsNumber, Mode=TwoWay}" TextWrapping="Wrap" 
+                                           Style="{StaticResource PhoneTextExtraLargeStyle}" 
+                                           FontSize="24"/>
+                                    <TextBlock Grid.Column="2" 
+                                           Text="/" TextWrapping="Wrap" 
+                                           Style="{StaticResource PhoneTextExtraLargeStyle}" 
+                                           Foreground="#FFFFFCFC" 
+                                           FontSize="24"/>
+                                    <TextBlock Grid.Column="3" 
+                                           x:Name="tbSuccessfulEffortsNumber" 
+                                           Text="{Binding SuccessfulEffortsNumber, Mode=TwoWay}" 
+                                           TextWrapping="Wrap" 
+                                           Style="{StaticResource PhoneTextExtraLargeStyle}" 
+                                           FontSize="24"/>
+                                    <Button Grid.Column="4" 
+                                        x:Name="deleteWordsButton" 
+                                        BorderThickness="0"
+                                        Click="deleteWordsButton_Click">
+                                        <Image Source="/Images/delete.png"
+                                           Height="75"
+                                           Width="75" />
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
             </phone:PivotItem>
 
             <!--Pivot item two-->
-            <phone:PivotItem Header="Результаты" Margin="10,10,14,18">
+            <phone:PivotItem Header="Results">
                 <ScrollViewer>
                     <Grid>
                         <Grid.Resources>
@@ -61,55 +134,114 @@
                         </Grid.Resources>
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
                         </Grid.RowDefinitions>
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="27*" />
-                            <ColumnDefinition Width="21*" />
+                            <ColumnDefinition Width="28*" />
+                            <ColumnDefinition Width="20*" />
                         </Grid.ColumnDefinitions>
-
-                        <TextBlock Grid.Row="0" Grid.Column="0"
+                        <ProgressBar Grid.Row="0" 
+                                     x:Name="pbProgress"
+                                     IsIndeterminate="False" 
+                                     Maximum="100"  
+                                     Height="15" Width="440"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0"
                               Style="{StaticResource PhoneTextLargeStyle}"
                               Text="Всего слов:"
                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="0" Grid.Column="1"
+                        <TextBlock Grid.Row="1" Grid.Column="1"
                               x:Name="tbCountWords"
                               Style="{StaticResource PhoneTextTitle1Style}" 
                               />
-                        <TextBlock Grid.Row="1" Grid.Column="0"
-                              Style="{StaticResource PhoneTextLargeStyle}"
-                              Text="Всего тестов:" Padding="0,0,0,25"
-                              HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Padding="0,0,0,25"
-                              Style="{StaticResource PhoneTextTitle1Style}" 
-                              x:Name="tdCountTests"/>
-                        <TextBlock Grid.Row="2" Grid.Column="0" 
-                              Style="{StaticResource LabelStyle}"
-                              Text="Выученных слов:" FontSize="29.333" />
-                        <TextBlock Grid.Row="2" Grid.Column="1"
-                              Style="{StaticResource ValueStyle}"
-                              x:Name="tbCountKnownWords"
-                              />
+                        <TextBlock Grid.Row="2" Grid.Column="0"
+                                   Text="Всего тестов:"
+                                   Style="{StaticResource PhoneTextLargeStyle}"                               
+                                   Padding="0,0,0,25"
+                                   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" 
+                                   x:Name="tdCountTests"
+                                   Style="{StaticResource PhoneTextTitle1Style}"/>
                         <TextBlock Grid.Row="3" Grid.Column="0"
-                              Style="{StaticResource LabelStyle}"
-                              Text="Успешных тестов:" FontSize="29.333" Margin="0,50,15,-40" />
+                                   Text="Выученных слов:"
+                                   Style="{StaticResource LabelStyle}"                                    
+                                   FontSize="29.333" />
                         <TextBlock Grid.Row="3" Grid.Column="1"
-                              Style="{StaticResource ValueStyle}"
-                              x:Name="tbCountSuccessTests" />
-
+                                   x:Name="tbCountKnownWords"
+                                   Style="{StaticResource ValueStyle}"/>
+                        <TextBlock Grid.Row="4" Grid.Column="0"
+                                   Text="Успешных тестов:"
+                                   Style="{StaticResource LabelStyle}"                                    
+                                   FontSize="29.333"  />
+                        <TextBlock Grid.Row="4" Grid.Column="1"
+                                   x:Name="tbCountSuccessTests"
+                                   Style="{StaticResource ValueStyle}" />
                     </Grid>
                 </ScrollViewer>
             </phone:PivotItem>
+            <!-- pivot item three -->
+            <phone:PivotItem Header="Learned Words" FontSize="32">
+                <ListBox x:Name="lbKnownWords" 
+                             ItemsSource="{Binding KnownWords}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Margin="0,0,0,17">
+                                    <TextBlock Grid.Column="0"
+                                               Text="{Binding OriginWord, Mode=TwoWay}" 
+                                               TextWrapping="Wrap" 
+                                               Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                    <TextBlock Grid.Column="0"
+                                               Text="{Binding TranslateWord, Mode=TwoWay}" 
+                                               TextWrapping="Wrap" Margin="12,-6,12,0" 
+                                               Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                </StackPanel>
+                                <TextBlock Grid.Column="1" 
+                                           x:Name="tbEffortsNumber" 
+                                           Text="{Binding EffortsNumber, Mode=TwoWay}" TextWrapping="Wrap" 
+                                           Style="{StaticResource PhoneTextExtraLargeStyle}" 
+                                           FontSize="24"/>
+                                <TextBlock Grid.Column="2" 
+                                           Text="/" TextWrapping="Wrap" 
+                                           Style="{StaticResource PhoneTextExtraLargeStyle}" 
+                                           Foreground="#FFFFFCFC" 
+                                           FontSize="24"/>
+                                <TextBlock Grid.Column="3" 
+                                           x:Name="tbSuccessfulEffortsNumber" 
+                                           Text="{Binding SuccessfulEffortsNumber, Mode=TwoWay}" 
+                                           TextWrapping="Wrap" 
+                                           Style="{StaticResource PhoneTextExtraLargeStyle}" 
+                                           FontSize="24"/>
+                                <Button Grid.Column="4" 
+                                        x:Name="deleteWordsButton" 
+                                        Click="deleteWordsButton_Click">
+                                    <Image Source="/Images/delete.png" 
+                                          Height="75" Width="75"/>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </phone:PivotItem>
         </phone:Pivot>
     </Grid>
-    <phone:PhoneApplicationPage.ApplicationBar>
+    <phone:PhoneApplicationPage.ApplicationBar >
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Icon/add.png" Text="Добавить" Click="newWordButtom_Click"/>
-        </shell:ApplicationBar> 
+            <shell:ApplicationBarIconButton IconUri="/Images/add.png" 
+                                            Text="Add" 
+                                            Click="newWordButtom_Click"/>
+        </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
-   
+
 </phone:PhoneApplicationPage>

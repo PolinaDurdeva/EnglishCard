@@ -70,9 +70,9 @@ namespace EnglishCard.Model
             {
                 if (value != _effortsNumber)
                 {
-                    NotifyPropertyChanging("CountTest");
+                    NotifyPropertyChanging("EffortsNumber");
                     _effortsNumber = value;
-                    NotifyPropertyChanged("CountTest");
+                    NotifyPropertyChanged("EffortsNumber");
                 }
 
             }
@@ -90,9 +90,9 @@ namespace EnglishCard.Model
             {
                 if (value != _successfulEffortsNumber)
                 {
-                    NotifyPropertyChanging("CountSuccessTest");
+                    NotifyPropertyChanging("SuccessfulEffortsNumber");
                     _successfulEffortsNumber = value;
-                    NotifyPropertyChanged("CountSuccessTest");
+                    NotifyPropertyChanged("SuccessfulEffortsNumber");
                 }
             }
         }

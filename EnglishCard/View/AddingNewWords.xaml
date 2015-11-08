@@ -23,23 +23,44 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="ENGLISH CARDS" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="Добавить слово" Margin="10,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Height="99"/>
+            <TextBlock Text="Add new card" Margin="10,-7,0,0" Height="99" FontSize="48"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1">
             <StackPanel>
-                <TextBlock Text="Слово" Height="67" Margin="0,0,269,0" Foreground="White" FontFamily="Kalinga" FontSize="32"/>
-                <TextBox x:Name="tbNewOriginWord"/>
-                <TextBlock Text="Перевод" Height="67" Margin="0,0,269,0" Foreground="White" FontFamily="Kalinga" FontSize="32"/>
-                <TextBox x:Name="tbNewTranslateWord"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" 
+                           Text="Word"   
+                           FontFamily="Microsoft JhengHei Light" 
+                           FontSize="32"/>
+                    <TextBox Grid.Row="1"
+                             x:Name="tbNewOriginWord"
+                             InputScope="Text"
+                             KeyDown="originWord_Key_Down"/>
+                    <TextBlock Grid.Row="2"
+                               Text="Еranslation" 
+                               FontFamily="Microsoft JhengHei Light" 
+                               FontSize="32"/>
+                    <TextBox Grid.Row="3"
+                             x:Name="tbNewTranslateWord"
+                             InputScope="Text"
+                             Language="ru-RU"
+                             KeyDown="translateWord_Key_Down" TextWrapping="Wrap"/>
+                </Grid>
             </StackPanel>
         </Grid>
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Icon/save.png" Text="Сохранить" Click="appBarOkButton_Click" />
-            <shell:ApplicationBarIconButton IconUri="/Icon/cancel.png" Text="Отменить" Click="appBarCancelButton_Click" />
+            <shell:ApplicationBarIconButton IconUri="/Images/save.png" Text="save" Click="appBarOkButton_Click" />
+            <shell:ApplicationBarIconButton IconUri="/Images/cancel.png" Text="cancle" Click="appBarCancelButton_Click" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

@@ -1,6 +1,7 @@
 ﻿using System;
 using EnglishCard.ViewModel;
 using EnglishCard.Model;
+using System.Windows.Input;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -23,19 +24,18 @@ namespace EnglishCard.View
         private void appBarOkButton_Click(object sender, EventArgs e)
         {
             // Confirm there is some text in the text box.
-            if (tbNewOriginWord.Text.Length > 0)
+            if (tbNewOriginWord.Text.Length > 0 && tbNewTranslateWord.Text.Length > 0)
             {
                 // Create a new word.
                 Word newWord = new Word
                 {
                     OriginWord = tbNewOriginWord.Text,
-                    TranslateWord = tbNewTranslateWord.Text,                   
+                    TranslateWord = tbNewTranslateWord.Text,
                 };
 
                 // Add the item to the ViewModel.
                 App.ViewModel.AddWord(newWord);
-                App.ViewModel.LoadCollectionsFromDatabase();
-                
+
 
                 // Return to the main page.
                 if (NavigationService.CanGoBack)
@@ -43,7 +43,12 @@ namespace EnglishCard.View
                     NavigationService.GoBack();
                 }
             }
+            else
+            {
+                string errorMessages = "jjjj";
+                MessageBox.Show(errorMessages, "Warning: Invalid Values", MessageBoxButton.OK);
         }
+    }
 
         private void appBarCancelButton_Click(object sender, EventArgs e)
         {
@@ -51,6 +56,18 @@ namespace EnglishCard.View
             {
                 NavigationService.GoBack();
             }
+        }
+
+        private void originWord_Key_Down(object sender,KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                tbNewTranslateWord.Focus();
+        }
+
+        private void translateWord_Key_Down(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+                this.Focus();
         }
     }
 }
