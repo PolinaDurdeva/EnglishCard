@@ -8,6 +8,8 @@
     <!--Application Resources-->
     <Application.Resources>
         <local:LocalizedStrings xmlns:local="clr-namespace:EnglishCard" x:Key="LocalizedStrings"/>
+        <ImageBrush x:Key="originalBrush" ImageSource="/Images/background.png" Stretch="Fill" />
+        <ImageBrush x:Key="buttonBrush" ImageSource="/Images/bbuttonBlue.png" Stretch="Fill" />
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
