@@ -113,6 +113,9 @@
     <Compile Include="View\AddingNewWords.xaml.cs">
       <DependentUpon>AddingNewWords.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ResultsView.xaml.cs">
+      <DependentUpon>ResultsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\VocabularyView.xaml.cs">
       <DependentUpon>VocabularyView.xaml</DependentUpon>
     </Compile>
@@ -130,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddingNewWords.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ResultsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

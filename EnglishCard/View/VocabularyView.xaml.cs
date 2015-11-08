@@ -17,7 +17,7 @@ namespace EnglishCard.View
     public partial class VocabularyView : PhoneApplicationPage
     {
         private Random rnd = new Random();
-       
+        
         private Word NextCardWord {
             get
             {
@@ -36,24 +36,11 @@ namespace EnglishCard.View
         {
             base.OnNavigatedTo(e);
             this.DataContext = App.ViewModel;
-            
-            int countAllWords = App.ViewModel.AllWords.Count;
-            int countKnownWords = App.ViewModel.KnownWords.Count;
+            lbWords.DataContext = App.ViewModel.AllWords;
             //for cards page     
             Word nextCardWord = NextCardWord;     
             tbWordCardOrigin.Text = nextCardWord.OriginWord;
             tbWordCardTranslate.Text = nextCardWord.TranslateWord;
-            //for progress page
-            pbProgress.Value = countKnownWords / countAllWords * 100;
-            tbCountWords.Text = countAllWords.ToString();
-            tbCountKnownWords.Text = countKnownWords.ToString();
-            tdCountTests.Text = App.ViewModel.AllWords.Sum(wrd => wrd.EffortsNumber).ToString();
-            tbCountSuccessTests.Text = App.ViewModel.AllWords.Sum(wrd => wrd.SuccessfulEffortsNumber).ToString();
-        }
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            // Save changes to the database.
-            App.ViewModel.SaveChangesToDB();
         }
 
         private void newWordButtom_Click(object sender, EventArgs e)
@@ -69,11 +56,13 @@ namespace EnglishCard.View
             if (button != null)
             {
                 // Get a handle for the to-do item bound to the button.
-                Word wordForDelete = button.DataContext as Word;
-
+                Word wordForDelete = button.DataContext as Word;               
                 App.ViewModel.DeleteWord(wordForDelete);
+                
+                button.Visibility = Visibility.Collapsed;
             }
-
+            
+            
             // Put the focus back to the main page.
             this.Focus();
         }
@@ -87,14 +76,19 @@ namespace EnglishCard.View
 
         private void Searchbox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
-            lbWords.ItemsSource = App.ViewModel.AllWords.Where(wrd => wrd.OriginWord.ToLower().StartsWith(Searchbox.Text.ToLower()));
+
+            this.lbWords.ItemsSource = App.ViewModel.AllWords.Where(wrd => wrd.OriginWord.ToLower().StartsWith(Searchbox.Text.ToLower()));
         }
 
         private void searchbox_Key_Down(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
                 this.Focus();
+        }
+
+        private void resultsBotton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/View/ResultsView.xaml", UriKind.Relative));
         }
     }
 }

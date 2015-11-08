@@ -35,7 +35,7 @@ namespace EnglishCard.View
 
                 // Add the item to the ViewModel.
                 App.ViewModel.AddWord(newWord);
-
+                
 
                 // Return to the main page.
                 if (NavigationService.CanGoBack)

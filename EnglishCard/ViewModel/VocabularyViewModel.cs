@@ -95,6 +95,7 @@ namespace EnglishCard.ViewModel
             AllWords.Add(newWords);
             // Add a word to the "unknown" observable collection.
             UnKnownWords.Add(newWords);
+            LoadCollectionsFromDatabase();
         }
 
         // Remove a word from the database and collections.
@@ -122,6 +123,10 @@ namespace EnglishCard.ViewModel
 
             // Save changes to the database.
             dictionaryDB.SubmitChanges();
+        }
+        public int totalCountWord()
+        {
+            return dictionaryDB.Words.Count();
         }
 
         #region INotifyPropertyChanged Members

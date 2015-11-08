@@ -58,7 +58,7 @@
                              KeyDown ="searchbox_Key_Down"
                              Width="400" Height="80"
                              HorizontalAlignment="Left" VerticalAlignment="Top" 
-                             Grid.RowSpan="2" Margin="0,-9,0,0">
+                             Grid.RowSpan="2" Margin="0,-9,0,0" Opacity="0.5">
                     </TextBox>
                     <Image Grid.Row="0"
                            Source="/Images/feature.search.png"
@@ -67,7 +67,8 @@
                            Margin="0,-6,0,0" Grid.RowSpan="2" />
                     <ListBox Grid.Row ="1" 
                              x:Name="lbWords" 
-                             ItemsSource="{Binding AllWords, Mode=TwoWay}" >
+                             ItemsSource="{Binding}" >
+                        
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -120,69 +121,6 @@
             </phone:PivotItem>
 
             <!--Pivot item two-->
-            <phone:PivotItem Header="Results">
-                <ScrollViewer>
-                    <Grid>
-                        <Grid.Resources>
-                            <Style x:Key="LabelStyle" TargetType="TextBlock">
-                                <Setter Property="HorizontalAlignment" Value="Right"/>
-                                <Setter Property="Margin" Value="15,5" />
-                            </Style>
-                            <Style x:Key="ValueStyle" TargetType="TextBlock">
-                                <Setter Property="Margin" Value="15,5" />
-                            </Style>
-                        </Grid.Resources>
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="2*"/>
-                            <RowDefinition Height="2*"/>
-                            <RowDefinition Height="2*"/>
-                            <RowDefinition Height="2*"/>
-                        </Grid.RowDefinitions>
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="28*" />
-                            <ColumnDefinition Width="20*" />
-                        </Grid.ColumnDefinitions>
-                        <ProgressBar Grid.Row="0" 
-                                     x:Name="pbProgress"
-                                     IsIndeterminate="False" 
-                                     Maximum="100"  
-                                     Height="15" Width="440"/>
-                        <TextBlock Grid.Row="1" Grid.Column="0"
-                              Style="{StaticResource PhoneTextLargeStyle}"
-                              Text="Всего слов:"
-                              HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1"
-                              x:Name="tbCountWords"
-                              Style="{StaticResource PhoneTextTitle1Style}" 
-                              />
-                        <TextBlock Grid.Row="2" Grid.Column="0"
-                                   Text="Всего тестов:"
-                                   Style="{StaticResource PhoneTextLargeStyle}"                               
-                                   Padding="0,0,0,25"
-                                   HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Row="2" Grid.Column="1" 
-                                   x:Name="tdCountTests"
-                                   Style="{StaticResource PhoneTextTitle1Style}"/>
-                        <TextBlock Grid.Row="3" Grid.Column="0"
-                                   Text="Выученных слов:"
-                                   Style="{StaticResource LabelStyle}"                                    
-                                   FontSize="29.333" />
-                        <TextBlock Grid.Row="3" Grid.Column="1"
-                                   x:Name="tbCountKnownWords"
-                                   Style="{StaticResource ValueStyle}"/>
-                        <TextBlock Grid.Row="4" Grid.Column="0"
-                                   Text="Успешных тестов:"
-                                   Style="{StaticResource LabelStyle}"                                    
-                                   FontSize="29.333"  />
-                        <TextBlock Grid.Row="4" Grid.Column="1"
-                                   x:Name="tbCountSuccessTests"
-                                   Style="{StaticResource ValueStyle}" />
-                    </Grid>
-                </ScrollViewer>
-            </phone:PivotItem>
             <!-- pivot item three -->
             <phone:PivotItem Header="Learned Words" FontSize="32">
                 <ListBox x:Name="lbKnownWords" 
@@ -241,6 +179,9 @@
             <shell:ApplicationBarIconButton IconUri="/Images/add.png" 
                                             Text="Add" 
                                             Click="newWordButtom_Click"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="results" Click="resultsBotton_Click"/>
+            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

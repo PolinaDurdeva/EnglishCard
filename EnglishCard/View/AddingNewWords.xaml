@@ -14,7 +14,7 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource originalBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -39,20 +39,20 @@
                     <TextBlock Grid.Row="0" 
                            Text="Word"   
                            FontFamily="Microsoft JhengHei Light" 
-                           FontSize="32"/>
+                           FontSize="32" />
                     <TextBox Grid.Row="1"
                              x:Name="tbNewOriginWord"
                              InputScope="Text"
-                             KeyDown="originWord_Key_Down"/>
+                             KeyDown="originWord_Key_Down" Opacity="0.8"/>
                     <TextBlock Grid.Row="2"
-                               Text="Еranslation" 
+                               Text="Translation" 
                                FontFamily="Microsoft JhengHei Light" 
                                FontSize="32"/>
                     <TextBox Grid.Row="3"
                              x:Name="tbNewTranslateWord"
                              InputScope="Text"
                              Language="ru-RU"
-                             KeyDown="translateWord_Key_Down" TextWrapping="Wrap"/>
+                             KeyDown="translateWord_Key_Down" TextWrapping="Wrap" Opacity="0.8"/>
                 </Grid>
             </StackPanel>
         </Grid>
