@@ -103,8 +103,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModelHelper\TrainingTask.cs" />
+    <Compile Include="ViewModel\ITrainingViewModel.cs" />
     <Compile Include="ViewModel\VocabularyViewModel.cs" />
-    <Compile Include="ViewModel\TrainingViewModel.cs" />
+    <Compile Include="ViewModel\TranslationForWordTrainingViewModel.cs" />
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>

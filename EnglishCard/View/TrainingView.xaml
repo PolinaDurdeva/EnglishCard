@@ -35,22 +35,22 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="Word" Grid.Row="0" Text="{Binding Path=WordObject.OriginWord}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50"/>
-            <Button Grid.Row="1" x:Name="bTranslate1" Click="bTranslate1Button_Clic">
-                <TextBlock Text="{Binding Path=Translation0}" />
+            <TextBlock x:Name="Word" Grid.Row="0" Text="{Binding Path=WordOrigin}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50"/>
+            <Button Grid.Row="1" x:Name="bTranslate1" Click="bTranslateButton_Click">
+                <TextBlock Text="{Binding Path=TranslationSuggestions[0]}" />
             </Button>
-            <Button Grid.Row="2" x:Name="bTranslate2" Click="bTranslate2Button_Clic">
-                <TextBlock Text="{Binding Path=Translation1}" />
+            <Button Grid.Row="2" x:Name="bTranslate2" Click="bTranslateButton_Click">
+                <TextBlock Text="{Binding Path=TranslationSuggestions[1]}" />
             </Button>
-            <Button Grid.Row="3" x:Name="bTranslate3" Click="bTranslate3Button_Clic">
-                <TextBlock Text="{Binding Path=Translation2}" />
+            <Button Grid.Row="3" x:Name="bTranslate3" Click="bTranslateButton_Click">
+                <TextBlock Text="{Binding Path=TranslationSuggestions[2]}" />
             </Button>
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Button x:Name="bNextWord" Grid.Column="1" Click="bNextWord_Click">Next</Button>
+                <Button x:Name="bNextWord" Grid.Column="1" Click="bNextWord_Click">Start training</Button>
             </Grid>
     </Grid>
 

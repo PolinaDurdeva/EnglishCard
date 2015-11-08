@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Windows.Media;
 using EnglishCard.Resources;
 using EnglishCard.ViewModel;
 using EnglishCard.Model;
@@ -19,71 +20,58 @@ namespace EnglishCard.View
         public TrainingView()
         {
             InitializeComponent();
-            
-            //tWord.DataContext = App.ViewModel.UnKnownWords[nextWordNumber];
-            //tWord.Text = App.ViewModel.UnKnownWords[nextWordNumber].OriginWord;
-
-            //bTranslate1.DataContext = App.ViewModel.UnKnownWords[nextWordNumber];
-            //bTranslate1.Content = App.ViewModel.UnKnownWords[nextWordNumber].TranslateWord;
-
-            //bTranslate2.DataContext = App.ViewModel.UnKnownWords[nextWordNumber].TranslateWord;
-            //bTranslate2.Content = App.ViewModel.UnKnownWords[nextWordNumber].TranslateWord;
-
-            //bTranslate3.DataContext = App.ViewModel.UnKnownWords[nextWordNumber].TranslateWord;
-            //bTranslate3.Content = App.ViewModel.UnKnownWords[nextWordNumber].TranslateWord;
+            // TODO: Define params as consts
+            this.viewModel = new TranslationForWordTrainingViewModel(10, 3);
+            // Causes double initialization in model
+            this.trainingStarted = false;
         }
 
-        private void bTranslate1Button_Clic(object sender, RoutedEventArgs e)
+        private void bTranslateButton_Click(object sender, RoutedEventArgs e)
         {
-            //var button = sender as Button;
-
-            //if (button != null)
-            //{
-            //    // Get a handle for the to-do item bound to the button.
-            //    Word wordForCompare = button.DataContext as Word;
-            //    Word wordForCompare2 = this.tWord.DataContext as Word;
-            //    MessageBox.Show((wordForCompare.TranslateWord == wordForCompare2.TranslateWord).ToString());
-            //}
-
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            this.DataContext = new ViewModel.TrainingViewModel();
-        }
-
-        private void bTranslate2Button_Clic(object sender, RoutedEventArgs e)
-        {
-            //var button = sender as Button;
-
-            //if (button != null)
-            //{
-            //    // Get a handle for the to-do item bound to the button.
-            //    Word wordForCompare = button.DataContext as Word;
-            //    Word wordForCompare2 = this.tWord.DataContext as Word;
-            //    MessageBox.Show((wordForCompare.TranslateWord == wordForCompare2.TranslateWord).ToString());
-            //}
-
-        }
-
-        private void bTranslate3Button_Clic(object sender, RoutedEventArgs e)
-        {
-        //    var button = sender as Button;
-
-        //    if (button != null)
-        //    {
-        //        // Get a handle for the to-do item bound to the button.
-        //        Word wordForCompare = button.DataContext as Word;
-        //        Word wordForCompare2 = this.tWord.DataContext as Word;
-        //        MessageBox.Show((wordForCompare.TranslateWord == wordForCompare2.TranslateWord).ToString());
-        //    }
-
+            var clickedButton = sender as Button;
+            bool matched = viewModel.SuggestAnswer((clickedButton.Content as TextBlock).Text);
+            var btns = new Button[] { bTranslate1, bTranslate2, bTranslate3 };
+            //System.Diagnostics.Debug.WriteLine();
+            /*
+            foreach(Button btn in btns)
+            {
+                //btn.IsEnabled = false;
+                if ((btn.Content as TextBlock).Text == vm.WordObject.TranslateWord)
+                {
+                    btn.Background = new SolidColorBrush(Colors.Green);
+                }
+                else
+                {
+                    btn.Background = new SolidColorBrush(Colors.Red);
+                }
+            }*/
         }
 
         private void bNextWord_Click(object sender, RoutedEventArgs e)
         {
-            ((TrainingViewModel)this.DataContext).SetNextWord();
+            if (trainingStarted)
+            {
+                var btns = new Button[] { bTranslate1, bTranslate2, bTranslate3 };
+                foreach (Button btn in btns)
+                {
+                    btn.IsEnabled = true;
+                    btn.Background = new SolidColorBrush(Colors.Transparent);
+                }
+                viewModel.UpdateTask();
+            }
+            else
+                initializeTraining();
         }
+
+        private void initializeTraining()
+        {
+            trainingStarted = true;
+            this.DataContext = viewModel.GetTask();
+            this.bNextWord.Content = "Next";
+        }
+
+        private bool trainingStarted;
+
+        private ITrainingViewModel viewModel;
     }
 }
