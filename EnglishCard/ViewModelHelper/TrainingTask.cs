@@ -19,6 +19,35 @@ namespace EnglishCard.ViewModelHelper
             get { return translationSuggestions; }
         }
 
+        public bool Initialized
+        {
+            get
+            {
+                return initialized;
+            }
+            set
+            {
+                initialized = value;
+                NotifyPropertyChanged("Initialized");
+            }
+        }
+
+        public bool GuessMade
+        {
+            get
+            {
+                return guessMade;
+            }
+            set
+            {
+                if (guessMade != value)
+                {
+                    guessMade = value;
+                    NotifyPropertyChanged("GuessMade");
+                }
+            }
+        }
+
         /// <summary>
         /// Sets field of the object to the values supplied in params. TODO: somehow exclude it from the public interface because this is to much responsibility for the user.
         /// User is intended to modify the fields through the ViewModel
@@ -47,5 +76,7 @@ namespace EnglishCard.ViewModelHelper
 
         private string wordOrigin;
         private string[] translationSuggestions;
+        private bool initialized = false;
+        private bool guessMade = false;
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using EnglishCard.Resources;
 using EnglishCard.ViewModel;
 using EnglishCard.Model;
+using EnglishCard.ViewModelHelper;
 
 
 namespace EnglishCard.View
@@ -20,58 +21,56 @@ namespace EnglishCard.View
         public TrainingView()
         {
             InitializeComponent();
-            // TODO: Define params as consts
-            this.viewModel = new TranslationForWordTrainingViewModel(10, 3);
-            // Causes double initialization in model
-            this.trainingStarted = false;
+            vmlocator = new TrainingViewModelLocator();
+            stopTraining();
+        }
+
+        private void startButton_Click(object sender, RoutedEventArgs e)
+        {
+            startButton = sender as Button;
+            viewModel = vmlocator.GetViewModel(startButton.Name);
+            this.DataContext = viewModel.GetTask();
         }
 
         private void bTranslateButton_Click(object sender, RoutedEventArgs e)
         {
             var clickedButton = sender as Button;
+            bgRestore.Add(clickedButton, clickedButton.Background);
             bool matched = viewModel.SuggestAnswer((clickedButton.Content as TextBlock).Text);
-            var btns = new Button[] { bTranslate1, bTranslate2, bTranslate3 };
-            //System.Diagnostics.Debug.WriteLine();
-            /*
-            foreach(Button btn in btns)
+            if(matched)
             {
-                //btn.IsEnabled = false;
-                if ((btn.Content as TextBlock).Text == vm.WordObject.TranslateWord)
-                {
-                    btn.Background = new SolidColorBrush(Colors.Green);
-                }
-                else
-                {
-                    btn.Background = new SolidColorBrush(Colors.Red);
-                }
-            }*/
+                clickedButton.Background = new SolidColorBrush(Colors.Green);
+            } else
+            {
+                clickedButton.Background = new SolidColorBrush(Colors.Red);
+            }
         }
 
         private void bNextWord_Click(object sender, RoutedEventArgs e)
         {
-            if (trainingStarted)
+            if(!viewModel.UpdateTask())
             {
-                var btns = new Button[] { bTranslate1, bTranslate2, bTranslate3 };
-                foreach (Button btn in btns)
-                {
-                    btn.IsEnabled = true;
-                    btn.Background = new SolidColorBrush(Colors.Transparent);
-                }
-                viewModel.UpdateTask();
+                stopTraining();
             }
-            else
-                initializeTraining();
+            foreach(Button b in bgRestore.Keys)
+            {
+                b.Background = bgRestore[b];
+            }
+            bgRestore.Clear();
         }
 
-        private void initializeTraining()
+        private void stopTraining()
         {
-            trainingStarted = true;
+            this.viewModel = vmlocator.GetViewModel("StubTrainingViewModel");
             this.DataContext = viewModel.GetTask();
-            this.bNextWord.Content = "Next";
         }
 
-        private bool trainingStarted;
+        private TrainingViewModelLocator vmlocator;
 
         private ITrainingViewModel viewModel;
+
+        private Button startButton;
+
+        private Dictionary<Button, Brush> bgRestore = new Dictionary<Button, Brush>();
     }
 }

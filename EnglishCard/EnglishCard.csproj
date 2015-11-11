@@ -94,6 +94,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Model\Word.cs" />
     <Compile Include="Model\DictionaryModel.cs" />
@@ -104,7 +105,9 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModelHelper\TrainingTask.cs" />
+    <Compile Include="ViewModelHelper\TrainingViewModelLocator.cs" />
     <Compile Include="ViewModel\ITrainingViewModel.cs" />
+    <Compile Include="ViewModel\StubTrainingViewModel.cs" />
     <Compile Include="ViewModel\VocabularyViewModel.cs" />
     <Compile Include="ViewModel\TranslationForWordTrainingViewModel.cs" />
     <Compile Include="View\MainView.xaml.cs">

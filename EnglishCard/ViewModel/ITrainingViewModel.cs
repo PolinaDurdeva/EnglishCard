@@ -7,7 +7,7 @@ using EnglishCard.ViewModelHelper;
 
 namespace EnglishCard.ViewModel
 {
-    interface ITrainingViewModel
+    public interface ITrainingViewModel
     {
         TrainingTask GetTask();
         bool UpdateTask();

@@ -34,6 +34,7 @@ namespace EnglishCard.ViewModel
         {
             if (allWordsForTrainSession.MoveNext())
             {
+                this.task.Initialized = true;
                 var correctTranslation = allWordsForTrainSession.Current.TranslateWord;
                 var translations = new string[numberOfTranslationSuggestions];
                 allTranslationsForTrainSession.Where(translation => translation != correctTranslation)
@@ -46,6 +47,7 @@ namespace EnglishCard.ViewModel
             else
             {
                 this.dictionary.SubmitChanges();
+                this.task.Initialized = false;
                 return false;
             }
         }
@@ -53,6 +55,7 @@ namespace EnglishCard.ViewModel
         public bool SuggestAnswer(string answer)
         {
             this.allWordsForTrainSession.Current.EffortsNumber += 1;
+            this.task.GuessMade = true;
             if (answer == allWordsForTrainSession.Current.TranslateWord)
             {
                 this.allWordsForTrainSession.Current.SuccessfulEffortsNumber+= 1;
