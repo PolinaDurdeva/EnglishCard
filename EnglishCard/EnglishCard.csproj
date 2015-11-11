@@ -110,6 +110,7 @@
     <Compile Include="ViewModel\StubTrainingViewModel.cs" />
     <Compile Include="ViewModel\VocabularyViewModel.cs" />
     <Compile Include="ViewModel\TranslationForWordTrainingViewModel.cs" />
+    <Compile Include="ViewModel\WordForTranslationTrainingViewModel.cs" />
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>

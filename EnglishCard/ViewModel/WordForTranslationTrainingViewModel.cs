@@ -10,10 +10,10 @@ using EnglishCard.ViewModelHelper;
 
 namespace EnglishCard.ViewModel
 {
-    public class TranslationForWordTrainingViewModel : ITrainingViewModel
+    public class WordForTransaltionTrainingViewModel : ITrainingViewModel
     {
-        
-        public TranslationForWordTrainingViewModel(int numberOfWordsInSession, int numberOfTranslationVariants)
+
+        public WordForTransaltionTrainingViewModel(int numberOfWordsInSession, int numberOfTranslationVariants)
         {
             this.numberOfWordsInSession = numberOfWordsInSession;
             this.numberOfTranslationSuggestions = numberOfTranslationVariants;
@@ -31,22 +31,21 @@ namespace EnglishCard.ViewModel
 
         public bool UpdateTask()
         {
-            // Origin is english
+            // Here origin means word in Russian
             if (allWordsForTrainSession.MoveNext())
             {
                 this.task.Initialized = true;
-                var correctTranslation = allWordsForTrainSession.Current.TranslateWord;
-                var translations = new string[numberOfTranslationSuggestions];
-                allTranslationsForTrainSession.Where(translation => translation != correctTranslation)
-                    .Take(numberOfTranslationSuggestions - 1).ToArray().CopyTo(translations, 0);
-                translations[numberOfTranslationSuggestions - 1] = correctTranslation;
-                translations = translations.OrderBy(_ => Guid.NewGuid()).ToArray();
-                this.task.UpdateFields(allWordsForTrainSession.Current.OriginWord, translations);
+                var correctOrigin = allWordsForTrainSession.Current.OriginWord;
+                var origins = new string[numberOfTranslationSuggestions];
+                allOriginsForTrainSession.Where(origin => origin != correctOrigin)
+                    .Take(numberOfTranslationSuggestions - 1).ToArray().CopyTo(origins, 0);
+                origins[numberOfTranslationSuggestions - 1] = correctOrigin;
+                origins = origins.OrderBy(_ => Guid.NewGuid()).ToArray();
+                this.task.UpdateFields(allWordsForTrainSession.Current.TranslateWord, origins);
                 return true;
             }
             else
             {
-                dictionary.Log = Console.Out;
                 this.dictionary.SubmitChanges();
                 this.task.Initialized = false;
                 return false;
@@ -56,9 +55,9 @@ namespace EnglishCard.ViewModel
         public bool SuggestAnswer(string answer)
         {
             this.allWordsForTrainSession.Current.EffortsNumber += 1;
-            if (answer == allWordsForTrainSession.Current.TranslateWord)
+            if (answer == allWordsForTrainSession.Current.OriginWord)
             {
-                this.allWordsForTrainSession.Current.SuccessfulEffortsNumber+= 1;
+                this.allWordsForTrainSession.Current.SuccessfulEffortsNumber += 1;
                 return true;
             }
             return false;
@@ -66,11 +65,12 @@ namespace EnglishCard.ViewModel
 
         public void Reset()
         {
-            if(this.dictionary != null) this.dictionary.Dispose();
+            // Unnesessary?
+            if (this.dictionary != null) this.dictionary.Dispose();
             this.dictionary = new DictionaryModel();
             var wordsForTrain = dictionary.Words.OrderBy(word => word.OriginWord).Take(numberOfWordsInSession);
             this.allWordsForTrainSession = wordsForTrain.GetEnumerator();
-            this.allTranslationsForTrainSession = wordsForTrain.Select(word => word.TranslateWord);
+            this.allOriginsForTrainSession = wordsForTrain.Select(word => word.OriginWord);
             this.task = new TrainingTask();
             UpdateTask();
         }
@@ -91,7 +91,7 @@ namespace EnglishCard.ViewModel
 
         private IEnumerator<Word> allWordsForTrainSession;
 
-        private IEnumerable<string> allTranslationsForTrainSession;
+        private IEnumerable<string> allOriginsForTrainSession;
 
         private TrainingTask task;
 

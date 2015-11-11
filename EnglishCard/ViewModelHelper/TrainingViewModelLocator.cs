@@ -16,6 +16,8 @@ namespace EnglishCard.ViewModelHelper
                     return new TranslationForWordTrainingViewModel(10, 3);
                 case "StubTrainingViewModel":
                     return new StubTrainingViewModel();
+                case "WordForTransaltionTrainingViewModel":
+                    return new WordForTransaltionTrainingViewModel(10, 3);
                 default:
                     throw new NoViewModelException(name);
             }

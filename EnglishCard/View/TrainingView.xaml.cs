@@ -28,7 +28,6 @@ namespace EnglishCard.View
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
             startButton = sender as Button;
-            viewModel = vmlocator.GetViewModel(startButton.Name);
             this.DataContext = viewModel.GetTask();
         }
 
@@ -72,5 +71,13 @@ namespace EnglishCard.View
         private Button startButton;
 
         private Dictionary<Button, Brush> bgRestore = new Dictionary<Button, Brush>();
+
+        private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var pivot = sender as Pivot;
+            var pivotItem = pivot.SelectedItem as PivotItem;
+            System.Diagnostics.Debug.WriteLine(pivotItem.Name);
+            viewModel = vmlocator.GetViewModel(pivotItem.Name);
+        }
     }
 }
