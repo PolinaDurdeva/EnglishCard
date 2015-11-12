@@ -92,7 +92,7 @@
                 </Grid>
             </phone:PivotItem>
 
-            <phone:PivotItem x:Name="Writing">
+            <phone:PivotItem x:Name="WriteWordTrainingViewModel">
                 <phone:PivotItem.Header>
                     <TextBlock Text="Writing" FontSize="30" FontFamily="Arial" Margin="0,30,0,0"/>
                 </phone:PivotItem.Header>
@@ -100,11 +100,13 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"/>
                         <RowDefinition Height="0.8*"/>
-                        <RowDefinition Height="2.2*"/>
+                        <RowDefinition Height="0.8*"/>
+                        <RowDefinition Height="1.4*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="{Binding Path=WordOrigin}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Visibility="Collapsed"/>
-                    <Button x:Name="bWritingStart" Background ="DarkGreen" Opacity=".75"  Click="startButton_Click">
+                    <TextBlock Grid.Row="0" Text="{Binding Path=WordOrigin}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"/>
+                    <Button Background ="DarkGreen" 
+                            Opacity=".75" Click="startButton_Click" Visibility="{Binding Path=Initialized, Converter={StaticResource BoolToVisRev}}">
                         <TextBlock Text="Start training" FontSize="50"/>
                     </Button>
                     <Grid Grid.Row="1">
@@ -112,15 +114,22 @@
                             <ColumnDefinition Width="4*" />
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
-                        <TextBox></TextBox>
-                        <Button Grid.Column="1" Click="bNextWord_Click" IsEnabled="False">Ok</Button>
+                        <TextBox x:Name="tbWriting"></TextBox>
+                        <Button Grid.Column="1" Click="bOkButton_Click" IsEnabled="{Binding Path=Initialized}">Ok</Button>
                     </Grid>
-                    <Grid Grid.Row="3">
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Path=TranslationSuggestions[0]}" FontSize="34" TextAlignment="Center" Foreground="Green"/>
+                    </Grid>
+                    <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="1" Click="bNextWord_Click" IsEnabled="False">Next</Button>
+                        <Button Grid.Column="1" Click="bNextWord_Click" IsEnabled="{Binding Path=Initialized}">Next</Button>
                     </Grid>
                 </Grid>
             </phone:PivotItem>

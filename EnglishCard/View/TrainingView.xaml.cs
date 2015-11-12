@@ -31,6 +31,20 @@ namespace EnglishCard.View
             this.DataContext = viewModel.GetTask();
         }
 
+        private void bOkButton_Click(object sender, RoutedEventArgs e)
+        {
+            var clickedButton = sender as Button;
+            bool matched = viewModel.SuggestAnswer(tbWriting.Text);
+            bgRestore.Add(clickedButton, clickedButton.Background);
+            if (matched)
+            {
+                clickedButton.Background = new SolidColorBrush(Colors.Green);
+            } else
+            {
+                clickedButton.Background = new SolidColorBrush(Colors.Red);
+            }
+        }
+
         private void bTranslateButton_Click(object sender, RoutedEventArgs e)
         {
             var clickedButton = sender as Button;
@@ -47,6 +61,8 @@ namespace EnglishCard.View
 
         private void bNextWord_Click(object sender, RoutedEventArgs e)
         {
+            // If we skip word, it is assumed failed
+            viewModel.SuggestAnswer("");
             if(!viewModel.UpdateTask())
             {
                 stopTraining();
@@ -56,6 +72,7 @@ namespace EnglishCard.View
                 b.Background = bgRestore[b];
             }
             bgRestore.Clear();
+            tbWriting.Text = "";
         }
 
         private void stopTraining()

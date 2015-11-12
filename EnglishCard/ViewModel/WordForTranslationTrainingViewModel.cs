@@ -31,6 +31,11 @@ namespace EnglishCard.ViewModel
 
         public bool UpdateTask()
         {
+            // check if iterator is initialized
+            if (this.allWordsForTrainSession.Current != null)
+            {
+                this.allWordsForTrainSession.Current.EffortsNumber += 1;
+            }
             // Here origin means word in Russian
             if (allWordsForTrainSession.MoveNext())
             {
@@ -54,7 +59,6 @@ namespace EnglishCard.ViewModel
 
         public bool SuggestAnswer(string answer)
         {
-            this.allWordsForTrainSession.Current.EffortsNumber += 1;
             if (answer == allWordsForTrainSession.Current.OriginWord)
             {
                 this.allWordsForTrainSession.Current.SuccessfulEffortsNumber += 1;
