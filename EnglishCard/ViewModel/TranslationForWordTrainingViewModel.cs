@@ -17,7 +17,6 @@ namespace EnglishCard.ViewModel
         {
             this.numberOfWordsInSession = numberOfWordsInSession;
             this.numberOfTranslationSuggestions = numberOfTranslationVariants;
-            this.Reset();
         }
 
         /// <summary>
@@ -29,29 +28,34 @@ namespace EnglishCard.ViewModel
             return this.task;
         }
 
+        /// <summary>
+        /// Updates the task provided by <see cref="GetTask"/> method. If update is impossibe, you should call Reset method.
+        /// </summary>
+        /// <returns></returns>
         public bool UpdateTask()
         {
             // check if iterator is initialized
-            if(this.allWordsForTrainSession.Current != null)
+            if(current != null)
             {
-                this.allWordsForTrainSession.Current.EffortsNumber += 1;
+                current.EffortsNumber += 1;
             }
             // Origin is english
             if (allWordsForTrainSession.MoveNext())
             {
+                current = allWordsForTrainSession.Current;
                 this.task.Initialized = true;
-                var correctTranslation = allWordsForTrainSession.Current.TranslateWord;
+                var correctTranslation = current.TranslateWord;
                 var translations = new string[numberOfTranslationSuggestions];
                 allTranslationsForTrainSession.Where(translation => translation != correctTranslation)
                     .Take(numberOfTranslationSuggestions - 1).ToArray().CopyTo(translations, 0);
                 translations[numberOfTranslationSuggestions - 1] = correctTranslation;
                 translations = translations.OrderBy(_ => Guid.NewGuid()).ToArray();
-                this.task.UpdateFields(allWordsForTrainSession.Current.OriginWord, translations);
+                this.task.UpdateFields(current.OriginWord, translations);
                 return true;
             }
             else
             {
-                dictionary.Log = Console.Out;
+                // Works fine, I promise
                 this.dictionary.SubmitChanges();
                 this.task.Initialized = false;
                 return false;
@@ -60,9 +64,9 @@ namespace EnglishCard.ViewModel
 
         public bool SuggestAnswer(string answer)
         {
-            if (answer == allWordsForTrainSession.Current.TranslateWord)
+            if (answer == current.TranslateWord)
             {
-                this.allWordsForTrainSession.Current.SuccessfulEffortsNumber+= 1;
+                current.SuccessfulEffortsNumber+= 1;
                 return true;
             }
             return false;
@@ -99,5 +103,7 @@ namespace EnglishCard.ViewModel
         private TrainingTask task;
 
         private DictionaryModel dictionary;
+
+        private Word current;
     }
 }

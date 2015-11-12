@@ -35,7 +35,8 @@ namespace EnglishCard.ViewModel
         public bool SuggestAnswer(string answer)
         {
             var correctOrigin = allWordsForTrainSession.Current.OriginWord;
-            this.task.UpdateFields(allWordsForTrainSession.Current.TranslateWord, new string[] { correctOrigin });
+            // Three elements because of bindings
+            this.task.UpdateFields(allWordsForTrainSession.Current.TranslateWord, new string[] { correctOrigin, "", "" });
             // copypasted. The compicated logic ought to be here
             if (answer == allWordsForTrainSession.Current.OriginWord)
             {
@@ -56,7 +57,8 @@ namespace EnglishCard.ViewModel
             if (allWordsForTrainSession.MoveNext())
             {
                 this.task.Initialized = true;
-                this.task.UpdateFields(allWordsForTrainSession.Current.TranslateWord, new string[] {""});
+                // Three elements because of bindings
+                this.task.UpdateFields(allWordsForTrainSession.Current.TranslateWord, new string[] {"", "", ""});
                 return true;
             }
             else
