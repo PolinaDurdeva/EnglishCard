@@ -70,7 +70,6 @@ namespace EnglishCard.ViewModel
 
         public void Reset()
         {
-            if(this.dictionary != null) this.dictionary.Dispose();
             this.dictionary = new DictionaryModel();
             var wordsForTrain = dictionary.Words.OrderBy(word => word.OriginWord).Take(numberOfWordsInSession);
             this.allWordsForTrainSession = wordsForTrain.GetEnumerator();

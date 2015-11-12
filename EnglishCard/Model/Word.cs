@@ -3,12 +3,21 @@ using System.ComponentModel;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
 
-
 namespace EnglishCard.Model
 {
     [Table]
     public class Word : INotifyPropertyChanged, INotifyPropertyChanging
     {
+        public Word()
+        {
+            System.Diagnostics.Debug.WriteLine("Word constructor called");
+        }
+
+        public Word(Word previousWord)
+        {
+            System.Diagnostics.Debug.WriteLine("Word copy constructor called");
+        }
+
         private int wordId;
 
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]
