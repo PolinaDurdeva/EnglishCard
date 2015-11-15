@@ -67,7 +67,7 @@
                            Margin="0,-6,0,0" Grid.RowSpan="2" />
                     <ListBox Grid.Row ="1" 
                              x:Name="lbWords" 
-                             ItemsSource="{Binding NeedableWord}" >
+                             ItemsSource="{Binding NeedableWord, Mode=TwoWay}" >
                         
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -81,17 +81,17 @@
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Margin="0,0,0,17">
                                         <TextBlock Grid.Column="0"
-                                               Text="{Binding OriginWord}" 
+                                               Text="{Binding OriginWord, Mode=TwoWay}" 
                                                TextWrapping="Wrap" 
                                                Style="{StaticResource PhoneTextExtraLargeStyle}"/>
                                         <TextBlock Grid.Column="0"
-                                               Text="{Binding TranslateWord}" 
+                                               Text="{Binding TranslateWord, Mode=TwoWay}" 
                                                TextWrapping="Wrap" Margin="12,-6,12,0" 
                                                Style="{StaticResource PhoneTextSubtleStyle}"/>
                                     </StackPanel>
                                     <TextBlock Grid.Column="1" 
                                            x:Name="tbEffortsNumber" 
-                                           Text="{Binding EffortsNumber}" TextWrapping="Wrap" 
+                                           Text="{Binding EffortsNumber, Mode=TwoWay}" TextWrapping="Wrap" 
                                            Style="{StaticResource PhoneTextExtraLargeStyle}" 
                                            FontSize="24"/>
                                     <TextBlock Grid.Column="2" 
@@ -101,7 +101,7 @@
                                            FontSize="24"/>
                                     <TextBlock Grid.Column="3" 
                                            x:Name="tbSuccessfulEffortsNumber" 
-                                           Text="{Binding SuccessfulEffortsNumber}" 
+                                           Text="{Binding SuccessfulEffortsNumber, Mode=TwoWay}" 
                                            TextWrapping="Wrap" 
                                            Style="{StaticResource PhoneTextExtraLargeStyle}" 
                                            FontSize="24"/>
@@ -133,7 +133,7 @@
                                     <ColumnDefinition Width="1*"/>
                                     <ColumnDefinition Width="1*"/>
                                     <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Margin="0,0,0,17">
                                     <TextBlock Grid.Column="0"
@@ -161,12 +161,6 @@
                                            TextWrapping="Wrap" 
                                            Style="{StaticResource PhoneTextExtraLargeStyle}" 
                                            FontSize="24"/>
-                                <Button Grid.Column="4" 
-                                        x:Name="deleteWordsButton" 
-                                        Click="deleteWordsButton_Click">
-                                    <Image Source="/Images/delete.png" 
-                                          Height="75" Width="75"/>
-                                </Button>
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -179,9 +173,9 @@
             <shell:ApplicationBarIconButton IconUri="/Images/add.png" 
                                             Text="Add" 
                                             Click="newWordButtom_Click"/>
-            <shell:ApplicationBar.MenuItems>
+           <!-- <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="results" Click="resultsBotton_Click"/>
-            </shell:ApplicationBar.MenuItems>
+            </shell:ApplicationBar.MenuItems> -->
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

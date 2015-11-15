@@ -15,10 +15,6 @@ namespace EnglishCard.ViewModel
     {
         private DictionaryModel dictionaryDB;
         Random rnd = new Random();
-        private int _countSuccessTests;
-        private int _countAllWords;
-        private int _countKnownWords;
-        private int _totalCountTest;
         private Word _nextCard;
 
         public Word NextCard
@@ -48,43 +44,6 @@ namespace EnglishCard.ViewModel
             dictionaryDB = new DictionaryModel(stringInDictionary);
         }
 
-        public int CountSuccessTests
-        {
-            get { return _countSuccessTests; }
-            set
-            {
-                _countSuccessTests = value;
-                NotifyPropertyChanged("CountSuccessTests");
-            }
-        }
-        public int TotalCountTest
-        {
-            get { return _totalCountTest; }
-            set
-            {
-                _totalCountTest = value;
-                NotifyPropertyChanged("TotalCountTest");
-            }
-        }
-
-        public int CountKnownWords
-        {
-            get { return _countKnownWords; }
-            set
-            {
-                _countKnownWords = value;
-                NotifyPropertyChanged("CountKnownWords");
-            }
-        }
-        public int CountAllWords
-        {
-            get { return _countAllWords;  }
-            set
-            {
-                _countAllWords = value;
-                NotifyPropertyChanged("CountAllWords");
-            }
-        }
         private ObservableCollection<Word> _needableWord;
         public ObservableCollection<Word> NeedableWord
         {
@@ -146,7 +105,6 @@ namespace EnglishCard.ViewModel
         // Query database and load the collections and list used by the pivot pages.
         public void LoadCollectionsFromDatabase()
         {
-
             // Specify the query for all words in the database.
             var wordsInDB = dictionaryDB.Words.Where(_ => true).OrderBy(word => word.OriginWord);
             //var wordsInDB = from Word word in dictionaryDB.Words select word;
@@ -160,30 +118,11 @@ namespace EnglishCard.ViewModel
             UnKnownWords = new ObservableCollection<Word>(unknownWordsInDB);
             //var knownWordsInDB = from Word word in dictionaryDB.Words where word.FlagKnowledge select word;
             // Query the database and load known words.
-            var knownWordsInDB = dictionaryDB.Words.Where(word => word.SuccessfulEffortsNumber > 5 && word.SuccessfulEffortsNumber == word.EffortsNumber).OrderBy(word => word.OriginWord);
+            var knownWordsInDB = dictionaryDB.Words.Where(word => word.SuccessfulEffortsNumber > 2 && word.SuccessfulEffortsNumber == word.EffortsNumber).OrderBy(word => word.OriginWord);
             KnownWords = new ObservableCollection<Word>(knownWordsInDB);
-            CountSuccessTests = dictionaryDB.Words.Sum(word => word.SuccessfulEffortsNumber);
-            TotalCountTest = dictionaryDB.Words.Sum(word => word.EffortsNumber);
-            CountAllWords = dictionaryDB.Words.Count();
-            CountKnownWords = KnownWords.Count();
+
         }
 
-        // Add a word to the database and collections.
-        public void AddWord(Word newWords)
-        {
-            // Add a word to the data context.
-            dictionaryDB.Words.InsertOnSubmit(newWords);
-
-            // Save changes to the database.
-            dictionaryDB.SubmitChanges();
-
-            // Add a word to the "all" observable collection.
-            AllWords.Add(newWords);
-            // Add a word to the "unknown" observable collection.
-            UnKnownWords.Add(newWords);
-            NeedableWord.Add(newWords);
-            LoadCollectionsFromDatabase();
-        }
 
         // Remove a word from the database and collections.
         public void DeleteWord(Word wordForDelete)
@@ -210,6 +149,7 @@ namespace EnglishCard.ViewModel
             dictionaryDB.Words.DeleteOnSubmit(wordForDelete);
             // Save changes to the database.
             dictionaryDB.SubmitChanges();
+            
         }
 
         #region INotifyPropertyChanged Members

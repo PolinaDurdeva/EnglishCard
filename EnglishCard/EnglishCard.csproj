@@ -106,7 +106,9 @@
     </Compile>
     <Compile Include="ViewModelHelper\TrainingTask.cs" />
     <Compile Include="ViewModelHelper\TrainingViewModelLocator.cs" />
+    <Compile Include="ViewModel\AddWordsViewModel.cs" />
     <Compile Include="ViewModel\ITrainingViewModel.cs" />
+    <Compile Include="ViewModel\ResultsViewModel.cs" />
     <Compile Include="ViewModel\StubTrainingViewModel.cs" />
     <Compile Include="ViewModel\VocabularyViewModel.cs" />
     <Compile Include="ViewModel\TranslationForWordTrainingViewModel.cs" />

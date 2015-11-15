@@ -54,7 +54,7 @@ namespace EnglishCard
             viewModel = new VocabularyViewModel(DictionaryModel.DBConnectionString);
 
             // Query the local database and load observable collections.
-            //viewModel.LoadCollectionsFromDatabase();
+            viewModel.LoadCollectionsFromDatabase();
         }
 
         // Code to execute when a contract activation such as a file open or save picker returns 

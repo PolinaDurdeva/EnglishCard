@@ -17,21 +17,26 @@ namespace EnglishCard.View
     public partial class VocabularyView : PhoneApplicationPage
     {
         private Random rnd = new Random();
-        
+        private VocabularyViewModel viewModel;
+        public VocabularyViewModel ViewModel
+        {
+            get { return viewModel; }
+        }
+          
         public VocabularyView()
         {
             InitializeComponent();
-            //App.ViewModel.LoadCollectionsFromDatabase();
+            viewModel = new VocabularyViewModel(DictionaryModel.DBConnectionString);
+            viewModel.LoadCollectionsFromDatabase();
             
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            this.DataContext = App.ViewModel;
-            App.ViewModel.LoadCollectionsFromDatabase();
-            App.ViewModel.generateNextWord();
-            App.ViewModel.searchWords("");
+            this.DataContext = ViewModel;
+            ViewModel.generateNextWord();
+            ViewModel.searchWords("");
         }
 
         private void newWordButtom_Click(object sender, EventArgs e)
@@ -48,9 +53,7 @@ namespace EnglishCard.View
             {
                 // Get a handle for the to-do item bound to the button.
                 Word wordForDelete = button.DataContext as Word;               
-                App.ViewModel.DeleteWord(wordForDelete);
-                
-                button.Visibility = Visibility.Collapsed;
+                ViewModel.DeleteWord(wordForDelete);
             }
             
             
@@ -61,13 +64,13 @@ namespace EnglishCard.View
         private void nextWord_Button_Click(object sender, RoutedEventArgs e)
         {
            
-            App.ViewModel.generateNextWord();
+            ViewModel.generateNextWord();
         }
 
         private void Searchbox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            App.ViewModel.searchWords(Searchbox.Text.ToLower());
+            ViewModel.searchWords(Searchbox.Text.ToLower());
         }
 
         private void searchbox_Key_Down(object sender, KeyEventArgs e)

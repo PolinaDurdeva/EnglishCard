@@ -5,6 +5,8 @@ using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using EnglishCard.ViewModel;
+using EnglishCard.Model;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
@@ -12,16 +14,22 @@ namespace EnglishCard.View
 {
     public partial class ResultsView : PhoneApplicationPage
     {
+        private ResultsViewModel viewModel;
+        public ResultsViewModel ViewModel
+        {
+            get { return viewModel; }
+        }
         public ResultsView()
         {
             InitializeComponent();
-            App.ViewModel.LoadCollectionsFromDatabase();
+            viewModel = new ResultsViewModel(DictionaryModel.DBConnectionString);
+            ViewModel.LoadInfoFromDataBase();
+            this.DataContext = ViewModel;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            this.DataContext = App.ViewModel;
-            pbProgress.Value = App.ViewModel.CountKnownWords / App.ViewModel.CountAllWords * 100;           
+            pbProgress.Value = ViewModel.CountKnownWords / ViewModel.CountAllWords * 100;           
         }
     }
 }
