@@ -18,29 +18,20 @@ namespace EnglishCard.View
     {
         private Random rnd = new Random();
         
-        private Word NextCardWord {
-            get
-            {
-                int countUnknownWords = App.ViewModel.UnKnownWords.Count;
-                int wordRandom = rnd.Next(0, countUnknownWords);
-                return App.ViewModel.UnKnownWords[wordRandom];
-            }
-        }
-        
         public VocabularyView()
         {
             InitializeComponent();
-
+            //App.ViewModel.LoadCollectionsFromDatabase();
+            
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             this.DataContext = App.ViewModel;
-            lbWords.DataContext = App.ViewModel.AllWords;
-            //for cards page     
-            Word nextCardWord = NextCardWord;     
-            tbWordCardOrigin.Text = nextCardWord.OriginWord;
-            tbWordCardTranslate.Text = nextCardWord.TranslateWord;
+            App.ViewModel.LoadCollectionsFromDatabase();
+            App.ViewModel.generateNextWord();
+            App.ViewModel.searchWords("");
         }
 
         private void newWordButtom_Click(object sender, EventArgs e)
@@ -69,15 +60,14 @@ namespace EnglishCard.View
 
         private void nextWord_Button_Click(object sender, RoutedEventArgs e)
         {
-            Word nextCardWord = NextCardWord;
-            tbWordCardOrigin.Text = nextCardWord.OriginWord;
-            tbWordCardTranslate.Text = nextCardWord.TranslateWord;
+           
+            App.ViewModel.generateNextWord();
         }
 
         private void Searchbox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            this.lbWords.ItemsSource = App.ViewModel.AllWords.Where(wrd => wrd.OriginWord.ToLower().StartsWith(Searchbox.Text.ToLower()));
+            App.ViewModel.searchWords(Searchbox.Text.ToLower());
         }
 
         private void searchbox_Key_Down(object sender, KeyEventArgs e)

@@ -15,20 +15,13 @@ namespace EnglishCard.View
         public ResultsView()
         {
             InitializeComponent();
+            App.ViewModel.LoadCollectionsFromDatabase();
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             this.DataContext = App.ViewModel;
-
-            int countAllWords = App.ViewModel.totalCountWord();
-            int countKnownWords = App.ViewModel.KnownWords.Count;
-            //for progress page
-            pbProgress.Value = countKnownWords / countAllWords * 100;
-            tbCountWords.Text = countAllWords.ToString();
-            tbCountKnownWords.Text = countKnownWords.ToString();
-            tdCountTests.Text = App.ViewModel.AllWords.Sum(wrd => wrd.EffortsNumber).ToString();
-            tbCountSuccessTests.Text = App.ViewModel.AllWords.Sum(wrd => wrd.SuccessfulEffortsNumber).ToString();
+            pbProgress.Value = App.ViewModel.CountKnownWords / App.ViewModel.CountAllWords * 100;           
         }
     }
 }

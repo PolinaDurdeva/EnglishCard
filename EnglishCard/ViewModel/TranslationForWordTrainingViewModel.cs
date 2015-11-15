@@ -38,6 +38,7 @@ namespace EnglishCard.ViewModel
             if(current != null)
             {
                 current.EffortsNumber += 1;
+                this.dictionary.SubmitChanges();
             }
             // Origin is english
             if (allWordsForTrainSession.MoveNext())
@@ -50,7 +51,7 @@ namespace EnglishCard.ViewModel
                     .Take(numberOfTranslationSuggestions - 1).ToArray().CopyTo(translations, 0);
                 translations[numberOfTranslationSuggestions - 1] = correctTranslation;
                 translations = translations.OrderBy(_ => Guid.NewGuid()).ToArray();
-                this.task.UpdateFields(current.OriginWord, translations);
+                this.task.UpdateFields(current.OriginWord, translations);             
                 return true;
             }
             else
@@ -60,6 +61,7 @@ namespace EnglishCard.ViewModel
                 this.task.Initialized = false;
                 return false;
             }
+            
         }
 
         public bool SuggestAnswer(string answer)
@@ -67,6 +69,7 @@ namespace EnglishCard.ViewModel
             if (answer == current.TranslateWord)
             {
                 current.SuccessfulEffortsNumber+= 1;
+                this.dictionary.SubmitChanges();
                 return true;
             }
             return false;

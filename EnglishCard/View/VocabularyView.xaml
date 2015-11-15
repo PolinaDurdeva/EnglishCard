@@ -28,12 +28,12 @@
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0"
                                x:Name="tbWordCardOrigin"
-                               Text="{Binding OriginWord}" 
+                               Text="{Binding NextCard.OriginWord}" 
                                FontSize="{StaticResource PhoneFontSizeLarge}"                               
                                VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
                     <TextBlock Grid.Row="1"
                                x:Name="tbWordCardTranslate"
-                               Text="{Binding TranslateWord}" 
+                               Text="{Binding NextCard.TranslateWord}" 
                                Style="{StaticResource PhoneTextSubtleStyle}"                              
                                VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
@@ -67,7 +67,7 @@
                            Margin="0,-6,0,0" Grid.RowSpan="2" />
                     <ListBox Grid.Row ="1" 
                              x:Name="lbWords" 
-                             ItemsSource="{Binding}" >
+                             ItemsSource="{Binding NeedableWord}" >
                         
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -81,17 +81,17 @@
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Margin="0,0,0,17">
                                         <TextBlock Grid.Column="0"
-                                               Text="{Binding OriginWord, Mode=TwoWay}" 
+                                               Text="{Binding OriginWord}" 
                                                TextWrapping="Wrap" 
                                                Style="{StaticResource PhoneTextExtraLargeStyle}"/>
                                         <TextBlock Grid.Column="0"
-                                               Text="{Binding TranslateWord, Mode=TwoWay}" 
+                                               Text="{Binding TranslateWord}" 
                                                TextWrapping="Wrap" Margin="12,-6,12,0" 
                                                Style="{StaticResource PhoneTextSubtleStyle}"/>
                                     </StackPanel>
                                     <TextBlock Grid.Column="1" 
                                            x:Name="tbEffortsNumber" 
-                                           Text="{Binding EffortsNumber, Mode=TwoWay}" TextWrapping="Wrap" 
+                                           Text="{Binding EffortsNumber}" TextWrapping="Wrap" 
                                            Style="{StaticResource PhoneTextExtraLargeStyle}" 
                                            FontSize="24"/>
                                     <TextBlock Grid.Column="2" 
@@ -101,7 +101,7 @@
                                            FontSize="24"/>
                                     <TextBlock Grid.Column="3" 
                                            x:Name="tbSuccessfulEffortsNumber" 
-                                           Text="{Binding SuccessfulEffortsNumber, Mode=TwoWay}" 
+                                           Text="{Binding SuccessfulEffortsNumber}" 
                                            TextWrapping="Wrap" 
                                            Style="{StaticResource PhoneTextExtraLargeStyle}" 
                                            FontSize="24"/>
@@ -137,17 +137,17 @@
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Margin="0,0,0,17">
                                     <TextBlock Grid.Column="0"
-                                               Text="{Binding OriginWord, Mode=TwoWay}" 
+                                               Text="{Binding OriginWord}" 
                                                TextWrapping="Wrap" 
                                                Style="{StaticResource PhoneTextExtraLargeStyle}"/>
                                     <TextBlock Grid.Column="0"
-                                               Text="{Binding TranslateWord, Mode=TwoWay}" 
+                                               Text="{Binding TranslateWord}" 
                                                TextWrapping="Wrap" Margin="12,-6,12,0" 
                                                Style="{StaticResource PhoneTextSubtleStyle}"/>
                                 </StackPanel>
                                 <TextBlock Grid.Column="1" 
                                            x:Name="tbEffortsNumber" 
-                                           Text="{Binding EffortsNumber, Mode=TwoWay}" TextWrapping="Wrap" 
+                                           Text="{Binding EffortsNumber}" TextWrapping="Wrap" 
                                            Style="{StaticResource PhoneTextExtraLargeStyle}" 
                                            FontSize="24"/>
                                 <TextBlock Grid.Column="2" 
@@ -157,7 +157,7 @@
                                            FontSize="24"/>
                                 <TextBlock Grid.Column="3" 
                                            x:Name="tbSuccessfulEffortsNumber" 
-                                           Text="{Binding SuccessfulEffortsNumber, Mode=TwoWay}" 
+                                           Text="{Binding SuccessfulEffortsNumber}" 
                                            TextWrapping="Wrap" 
                                            Style="{StaticResource PhoneTextExtraLargeStyle}" 
                                            FontSize="24"/>

@@ -62,7 +62,7 @@
                               Text="Total words:"
                               HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     <TextBlock Grid.Row="1" Grid.Column="1"
-                                   Text="{Binding AllWords}"
+                                   Text="{Binding CountAllWords}"
                                    x:Name="tbCountWords"
                                    Style="{StaticResource PhoneTextTitle1Style}" 
                                    HorizontalAlignment="Center" VerticalAlignment="Center" 
@@ -73,7 +73,7 @@
                                    Padding="0,0,0,25"
                                    HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     <TextBlock Grid.Row="2" Grid.Column="1" 
-                                   Text="{Binding AllWords.EffortsNumber}"
+                                   Text="{Binding TotalCountTest}"
                                    x:Name="tdCountTests"
                                    Style="{StaticResource PhoneTextTitle1Style}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBlock Grid.Row="3" Grid.Column="0"
@@ -82,14 +82,14 @@
                                    FontSize="29.333" HorizontalAlignment="Right" VerticalAlignment="Center" />
                     <TextBlock Grid.Row="3" Grid.Column="1"
                                    x:Name="tbCountKnownWords"
-                                   Text="{Binding UnKnownWords}"
+                                   Text="{Binding CountKnownWords}"
                                    Style="{StaticResource ValueStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
                     <TextBlock Grid.Row="4" Grid.Column="0"
                                    Text="Successful tests:"
                                    Style="{StaticResource LabelStyle}"                                    
                                    FontSize="29.333" HorizontalAlignment="Right" VerticalAlignment="Center"  />
                     <TextBlock Grid.Row="4" Grid.Column="1"
-                                   Text="{Binding UnKnownWords.SuccessfulEffortsNumber}"
+                                   Text="{Binding CountSuccessTests}"
                                    x:Name="tbCountSuccessTests"
                                    Style="{StaticResource ValueStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" />
                 </Grid>
