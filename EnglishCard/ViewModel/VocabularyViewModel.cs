@@ -14,10 +14,51 @@ namespace EnglishCard.ViewModel
     public class VocabularyViewModel : INotifyPropertyChanged
     {
         private DictionaryModel dictionaryDB;
+        Random rnd = new Random();
+        private Word _nextCard;
+
+        public Word NextCard
+        {
+            get
+            {
+                return _nextCard;
+            }
+            set
+            {
+                _nextCard = value;
+                NotifyPropertyChanged("NextCard");
+            }
+
+        }
+ 
+        public void generateNextWord()
+        {
+            
+            int wordRandom = rnd.Next(0, this.UnKnownWords.Count());
+            Word nextCard = this.UnKnownWords[wordRandom];
+            NextCard = nextCard;
+        }
 
         public VocabularyViewModel (string stringInDictionary)
         {
             dictionaryDB = new DictionaryModel(stringInDictionary);
+        }
+
+        private ObservableCollection<Word> _needableWord;
+        public ObservableCollection<Word> NeedableWord
+        {
+            get { return _needableWord; }
+            set
+            {
+                _needableWord = value;
+                NotifyPropertyChanged("NeedableWord");
+            }
+        }
+
+        public void searchWords(string word)
+        {
+            var needableWord = dictionaryDB.Words.Where(wrd => wrd.OriginWord.ToLower().StartsWith(word.ToLower())).OrderBy(wrd => wrd.OriginWord);
+            NeedableWord = new ObservableCollection<Word>(needableWord);
         }
 
         private ObservableCollection<Word> _allWords;
@@ -31,6 +72,7 @@ namespace EnglishCard.ViewModel
                 NotifyPropertyChanged("AllWords");
             }
         }
+
 
         private ObservableCollection<Word> _knownWords;
 
@@ -63,7 +105,6 @@ namespace EnglishCard.ViewModel
         // Query database and load the collections and list used by the pivot pages.
         public void LoadCollectionsFromDatabase()
         {
-
             // Specify the query for all words in the database.
             var wordsInDB = dictionaryDB.Words.Where(_ => true).OrderBy(word => word.OriginWord);
             //var wordsInDB = from Word word in dictionaryDB.Words select word;
@@ -77,26 +118,11 @@ namespace EnglishCard.ViewModel
             UnKnownWords = new ObservableCollection<Word>(unknownWordsInDB);
             //var knownWordsInDB = from Word word in dictionaryDB.Words where word.FlagKnowledge select word;
             // Query the database and load known words.
-            var knownWordsInDB = dictionaryDB.Words.Where(word => word.SuccessfulEffortsNumber > 0 && word.SuccessfulEffortsNumber == word.EffortsNumber).OrderBy(word => word.OriginWord);
+            var knownWordsInDB = dictionaryDB.Words.Where(word => word.SuccessfulEffortsNumber > 2 && word.SuccessfulEffortsNumber == word.EffortsNumber).OrderBy(word => word.OriginWord);
             KnownWords = new ObservableCollection<Word>(knownWordsInDB);
 
         }
 
-        // Add a word to the database and collections.
-        public void AddWord(Word newWords)
-        {
-            // Add a word to the data context.
-            dictionaryDB.Words.InsertOnSubmit(newWords);
-
-            // Save changes to the database.
-            dictionaryDB.SubmitChanges();
-
-            // Add a word to the "all" observable collection.
-            AllWords.Add(newWords);
-            // Add a word to the "unknown" observable collection.
-            UnKnownWords.Add(newWords);
-            LoadCollectionsFromDatabase();
-        }
 
         // Remove a word from the database and collections.
         public void DeleteWord(Word wordForDelete)
@@ -104,9 +130,9 @@ namespace EnglishCard.ViewModel
 
             // Remove the word from the "all" observable collection.
             AllWords.Remove(wordForDelete);
-
+            NeedableWord.Remove(wordForDelete);
             // Remove the word from the data context.
-            dictionaryDB.Words.DeleteOnSubmit(wordForDelete);
+            
 
             // Remove the word from the appropriate category.   
             switch (wordForDelete.isKnown())
@@ -120,13 +146,10 @@ namespace EnglishCard.ViewModel
                 default:
                     break;
             }
-
+            dictionaryDB.Words.DeleteOnSubmit(wordForDelete);
             // Save changes to the database.
             dictionaryDB.SubmitChanges();
-        }
-        public int totalCountWord()
-        {
-            return dictionaryDB.Words.Count();
+            
         }
 
         #region INotifyPropertyChanged Members

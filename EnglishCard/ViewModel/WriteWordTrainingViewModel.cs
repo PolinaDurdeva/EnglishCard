@@ -38,6 +38,7 @@ namespace EnglishCard.ViewModel
             if (answer == allWordsForTrainSession.Current.OriginWord)
             {
                 this.allWordsForTrainSession.Current.SuccessfulEffortsNumber += 1;
+                this.dictionary.SubmitChanges();
                 return true;
             }
             return false;
@@ -49,6 +50,7 @@ namespace EnglishCard.ViewModel
             if (this.allWordsForTrainSession.Current != null)
             {
                 this.allWordsForTrainSession.Current.EffortsNumber += 1;
+                this.dictionary.SubmitChanges();
             }
             // Here origin means word in Russian
             if (allWordsForTrainSession.MoveNext())

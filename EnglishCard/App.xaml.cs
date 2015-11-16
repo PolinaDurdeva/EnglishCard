@@ -16,12 +16,6 @@ namespace EnglishCard
     public partial class App : Application
     {
         private static VocabularyViewModel viewModel;
-
-        // TODO: Maybe it's a bad style?
-        /// <summary>
-        /// A static ViewModel used by the views to bind against.
-        /// </summary>
-        /// <returns>The MainViewModel object.</returns>
         public static VocabularyViewModel ViewModel
         {
             get
@@ -29,18 +23,7 @@ namespace EnglishCard
                 return viewModel;
             }
         }
-        
-        // Create the ViewModel object.
-        
-        /// <summary>
-        /// Provides easy access to the root frame of the Phone Application.
-        /// </summary>
-        /// <returns>The root frame of the Phone Application.</returns>
         public static PhoneApplicationFrame RootFrame { get; private set; }
-
-        /// <summary>
-        /// Constructor for the Application object.
-        /// </summary>
         public App()
         {
             // Global handler for uncaught exceptions.
@@ -61,17 +44,6 @@ namespace EnglishCard
                 // Display the current frame rate counters.
                 Application.Current.Host.Settings.EnableFrameRateCounter = true;
 
-                // Show the areas of the app that are being redrawn in each frame.
-                //Application.Current.Host.Settings.EnableRedrawRegions = true;
-
-                // Enable non-production analysis visualization mode,
-                // which shows areas of a page that are handed off GPU with a colored overlay.
-                //Application.Current.Host.Settings.EnableCacheVisualization = true;
-
-                // Prevent the screen from turning off while under the debugger by disabling
-                // the application's idle detection.
-                // Caution:- Use this under debug mode only. Application that disables user idle detection will continue to run
-                // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
             using (DictionaryModel db = new DictionaryModel())

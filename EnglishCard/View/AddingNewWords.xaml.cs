@@ -15,10 +15,16 @@ namespace EnglishCard.View
 {
     public partial class AddingNewWords : PhoneApplicationPage
     {
+        private AddWordsViewModel viewModel;
+        public AddWordsViewModel ViewModel
+        {
+            get { return viewModel; }
+        }
         public AddingNewWords()
         {
             InitializeComponent();
-            this.DataContext = App.ViewModel;
+            viewModel = new AddWordsViewModel(DictionaryModel.DBConnectionString);
+            this.DataContext = ViewModel;
         }
 
         private void appBarOkButton_Click(object sender, EventArgs e)
@@ -34,7 +40,7 @@ namespace EnglishCard.View
                 };
 
                 // Add the item to the ViewModel.
-                App.ViewModel.AddWord(newWord);
+                ViewModel.AddWord(newWord);
                 
 
                 // Return to the main page.

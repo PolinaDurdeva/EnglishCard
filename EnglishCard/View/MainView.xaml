@@ -50,11 +50,12 @@
                     BorderThickness="0">
                 <TextBlock Text="Dictionary" FontSize="40"  />
             </Button>
-            <!--<Button Grid.Row="2" Grid.Column="1" Name="bSettings" Click="bSettings_Click" 
+            <Button Grid.Row="2" Grid.Column="1" Name="bResults" Click="bResults_Click" 
                     Height="220"
                     Background="{StaticResource buttonBrush}"
                     BorderThickness="0">
-                <TextBlock Text="Settings" FontSize="40"  /></Button>-->
+                <TextBlock Text="My results" FontSize="40"  />
+            </Button>
         </Grid>
     </Grid>
 

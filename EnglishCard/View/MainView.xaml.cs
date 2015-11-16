@@ -35,9 +35,9 @@ namespace EnglishCard
             NavigationService.Navigate(new Uri("/View/VocabularyView.xaml", UriKind.Relative));
         }
 
-        private void bSettings_Click(object sender, RoutedEventArgs e)
+        private void bResults_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/View/ResultsView.xaml", UriKind.Relative));
         }
     }
 }
