@@ -17,7 +17,6 @@ namespace EnglishCard.ViewModel
         {
             this.numberOfWordsInSession = numberOfWordsInSession;
             this.numberOfTranslationSuggestions = numberOfTranslationVariants;
-            this.Reset();
         }
 
         /// <summary>
@@ -69,8 +68,6 @@ namespace EnglishCard.ViewModel
 
         public void Reset()
         {
-            // Unnesessary?
-            if (this.dictionary != null) this.dictionary.Dispose();
             this.dictionary = new DictionaryModel();
             var wordsForTrain = dictionary.Words.OrderBy(word => word.OriginWord).Take(numberOfWordsInSession);
             this.allWordsForTrainSession = wordsForTrain.GetEnumerator();

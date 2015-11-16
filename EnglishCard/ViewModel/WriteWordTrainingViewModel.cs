@@ -13,7 +13,6 @@ namespace EnglishCard.ViewModel
         public WriteWordTrainingViewModel(int numberOfWordsInSession)
         {
             this.numberOfWordsInSession = numberOfWordsInSession;
-            this.Reset();
         }
 
         public TrainingTask GetTask()
@@ -23,8 +22,6 @@ namespace EnglishCard.ViewModel
 
         public void Reset()
         {
-            // Unnesessary?
-            if (this.dictionary != null) this.dictionary.Dispose();
             this.dictionary = new DictionaryModel();
             var wordsForTrain = dictionary.Words.OrderBy(word => word.OriginWord).Take(numberOfWordsInSession);
             this.allWordsForTrainSession = wordsForTrain.GetEnumerator();
