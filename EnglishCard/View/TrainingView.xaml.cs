@@ -50,7 +50,7 @@ namespace EnglishCard.View
         private void bTranslateButton_Click(object sender, RoutedEventArgs e)
         {
             var clickedButton = sender as Button;
-            bgRestore.Add(clickedButton, clickedButton.Background);
+            if(!bgRestore.ContainsKey(clickedButton)) bgRestore.Add(clickedButton, clickedButton.Background);
             bool matched = viewModel.SuggestAnswer((clickedButton.Content as TextBlock).Text);
             if(matched)
             {
@@ -86,8 +86,6 @@ namespace EnglishCard.View
         private TrainingViewModelLocator vmlocator;
 
         private ITrainingViewModel viewModel;
-
-        private Button startButton;
 
         private Dictionary<Button, Brush> bgRestore = new Dictionary<Button, Brush>();
 
