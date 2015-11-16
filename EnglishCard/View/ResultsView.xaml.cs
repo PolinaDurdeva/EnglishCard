@@ -29,7 +29,7 @@ namespace EnglishCard.View
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            pbProgress.Value = ViewModel.CountKnownWords / ViewModel.CountAllWords * 100;           
+            pbProgress.Value = ViewModel.CountKnownWords /(float) ViewModel.CountAllWords * 100;           
         }
     }
 }
