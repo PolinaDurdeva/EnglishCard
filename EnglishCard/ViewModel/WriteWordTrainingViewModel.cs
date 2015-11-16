@@ -23,7 +23,7 @@ namespace EnglishCard.ViewModel
         public void Reset()
         {
             this.dictionary = new DictionaryModel();
-            var wordsForTrain = dictionary.Words.OrderBy(word => word.OriginWord).Take(numberOfWordsInSession);
+            var wordsForTrain = dictionary.Words.OrderBy(learningIndex).Take(numberOfWordsInSession);
             this.allWordsForTrainSession = wordsForTrain.GetEnumerator();
             this.task = new TrainingTask();
             UpdateTask();
@@ -66,6 +66,12 @@ namespace EnglishCard.ViewModel
                 this.task.Initialized = false;
                 return false;
             }
+        }
+
+        private double learningIndex(Word w)
+        {
+            // TODO: Add randomness
+            return w.EffortsNumber + 2 * w.SuccessfulEffortsNumber + (new Random()).Next(-2, 2);
         }
 
         private int numberOfWordsInSession;

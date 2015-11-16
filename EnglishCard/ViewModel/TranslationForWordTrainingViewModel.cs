@@ -38,7 +38,6 @@ namespace EnglishCard.ViewModel
             if(current != null)
             {
                 current.EffortsNumber += 1;
-                this.dictionary.SubmitChanges();
             }
             // Origin is english
             if (allWordsForTrainSession.MoveNext())
@@ -69,7 +68,6 @@ namespace EnglishCard.ViewModel
             if (answer == current.TranslateWord)
             {
                 current.SuccessfulEffortsNumber+= 1;
-                this.dictionary.SubmitChanges();
                 return true;
             }
             return false;
@@ -78,7 +76,7 @@ namespace EnglishCard.ViewModel
         public void Reset()
         {
             this.dictionary = new DictionaryModel();
-            var wordsForTrain = dictionary.Words.OrderBy(word => word.OriginWord).Take(numberOfWordsInSession);
+            var wordsForTrain = dictionary.Words.OrderBy(learningIndex).Take(numberOfWordsInSession);
             this.allWordsForTrainSession = wordsForTrain.GetEnumerator();
             this.allTranslationsForTrainSession = wordsForTrain.Select(word => word.TranslateWord);
             this.task = new TrainingTask();
@@ -92,7 +90,7 @@ namespace EnglishCard.ViewModel
         private double learningIndex(Word w)
         {
             // TODO: Add randomness
-            return Math.Log(1 + w.EffortsNumber) * w.SuccessfulEffortsNumber;
+            return w.EffortsNumber + 2 * w.SuccessfulEffortsNumber + (new Random()).Next(-2, 2);
         }
 
         private int numberOfWordsInSession;

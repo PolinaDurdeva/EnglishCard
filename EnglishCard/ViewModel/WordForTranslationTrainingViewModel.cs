@@ -71,7 +71,7 @@ namespace EnglishCard.ViewModel
         public void Reset()
         {
             this.dictionary = new DictionaryModel();
-            var wordsForTrain = dictionary.Words.OrderBy(word => word.OriginWord).Take(numberOfWordsInSession);
+            var wordsForTrain = dictionary.Words.OrderBy(learningIndex).Take(numberOfWordsInSession);
             this.allWordsForTrainSession = wordsForTrain.GetEnumerator();
             this.allOriginsForTrainSession = wordsForTrain.Select(word => word.OriginWord);
             this.task = new TrainingTask();
@@ -85,7 +85,7 @@ namespace EnglishCard.ViewModel
         private double learningIndex(Word w)
         {
             // TODO: Add randomness
-            return Math.Log(1 + w.EffortsNumber) * w.SuccessfulEffortsNumber;
+            return w.EffortsNumber + 2 * w.SuccessfulEffortsNumber + (new Random()).Next(-2, 2);
         }
 
         private int numberOfWordsInSession;

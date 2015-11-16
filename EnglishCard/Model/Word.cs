@@ -10,7 +10,7 @@ namespace EnglishCard.Model
     {
         public Word()
         {
-            System.Diagnostics.Debug.WriteLine("Word constructor called");
+            //System.Diagnostics.Debug.WriteLine("Word constructor called");
         }
 
         public Word(Word previousWord)
