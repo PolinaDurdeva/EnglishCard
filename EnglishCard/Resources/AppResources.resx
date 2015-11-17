@@ -137,4 +137,10 @@
   <data name="AppBarMenuItemText" xml:space="preserve">
     <value>Menu Item</value>
   </data>
+  <data name="EnDBPath" xml:space="preserve">
+    <value>Dictionary.sdf</value>
+  </data>
+  <data name="FrDBPath" xml:space="preserve">
+    <value>DictionaryFr.sdf</value>
+  </data>
 </root>

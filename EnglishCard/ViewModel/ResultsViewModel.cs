@@ -20,7 +20,7 @@ namespace EnglishCard.ViewModel
 
         public ResultsViewModel(string stringInDictionary)
         {
-            dictionaryDB = new DictionaryModel(stringInDictionary);
+            dictionaryDB = new DictionaryModel();
         }
 
         public int CountSuccessTests

@@ -41,7 +41,7 @@ namespace EnglishCard.ViewModel
 
         public VocabularyViewModel (string stringInDictionary)
         {
-            dictionaryDB = new DictionaryModel(stringInDictionary);
+            dictionaryDB = new DictionaryModel();
         }
 
         private ObservableCollection<Word> _needableWord;
@@ -113,13 +113,13 @@ namespace EnglishCard.ViewModel
             // Query the database and load all words.
             AllWords = new ObservableCollection<Word>(wordsInDB);
             // Query the database and load unknown words.
-            var unknownWordsInDB = dictionaryDB.Words.Where(word => word.EffortsNumber >= word.SuccessfulEffortsNumber*5);
+            var unknownWordsInDB = dictionaryDB.Words.Where(word => word.EffortsNumber >= word.SuccessfulEffortsNumber * 2);
          
             //var unknownWordsInDB = from Word word in dictionaryDB.Words where !word.FlagKnowledge select word;
             UnKnownWords = new ObservableCollection<Word>(unknownWordsInDB);
             //var knownWordsInDB = from Word word in dictionaryDB.Words where word.FlagKnowledge select word;
             // Query the database and load known words.
-            var knownWordsInDB = dictionaryDB.Words.Where(word => word.EffortsNumber < word.SuccessfulEffortsNumber * 5).OrderBy(word => word.OriginWord);
+            var knownWordsInDB = dictionaryDB.Words.Where(word => word.EffortsNumber < word.SuccessfulEffortsNumber * 2).OrderBy(word => word.OriginWord);
             KnownWords = new ObservableCollection<Word>(knownWordsInDB);
 
         }

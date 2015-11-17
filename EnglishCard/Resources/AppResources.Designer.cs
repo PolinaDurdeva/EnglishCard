@@ -88,6 +88,24 @@ namespace EnglishCard.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dictionary.sdf.
+        /// </summary>
+        public static string EnDBPath {
+            get {
+                return ResourceManager.GetString("EnDBPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DictionaryFr.sdf.
+        /// </summary>
+        public static string FrDBPath {
+            get {
+                return ResourceManager.GetString("FrDBPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LeftToRight.
         /// </summary>
         public static string ResourceFlowDirection {
