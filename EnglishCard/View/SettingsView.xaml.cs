@@ -15,6 +15,20 @@ namespace EnglishCard.View
         public Settings()
         {
             InitializeComponent();
+            
+        }
+
+        private void useEnglish(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button.Content.ToString() == "English")
+            {
+                App.Language = true;               
+            }
+            else
+            {
+                App.Language = false;
+            }
         }
     }
 }

@@ -23,12 +23,15 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="ENGLISH CARDS" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="settings" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="Settings" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-
+            <Button Click="useEnglish" Margin="0,131,186,393" Content="English" >
+            </Button>
+            <Button Click="useEnglish" Margin="0,59,186,467" Content="French" >
+            </Button>
         </Grid>
     </Grid>
 
