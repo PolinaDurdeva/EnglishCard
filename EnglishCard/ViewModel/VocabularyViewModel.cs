@@ -113,12 +113,13 @@ namespace EnglishCard.ViewModel
             // Query the database and load all words.
             AllWords = new ObservableCollection<Word>(wordsInDB);
             // Query the database and load unknown words.
-            var unknownWordsInDB = dictionaryDB.Words.Where(word => word.SuccessfulEffortsNumber == 0 || word.SuccessfulEffortsNumber != word.EffortsNumber).OrderBy(word => word.OriginWord);
+            var unknownWordsInDB = dictionaryDB.Words.Where(word => word.EffortsNumber >= word.SuccessfulEffortsNumber * 2);
+         
             //var unknownWordsInDB = from Word word in dictionaryDB.Words where !word.FlagKnowledge select word;
             UnKnownWords = new ObservableCollection<Word>(unknownWordsInDB);
             //var knownWordsInDB = from Word word in dictionaryDB.Words where word.FlagKnowledge select word;
             // Query the database and load known words.
-            var knownWordsInDB = dictionaryDB.Words.Where(word => word.SuccessfulEffortsNumber > 2 && word.SuccessfulEffortsNumber == word.EffortsNumber).OrderBy(word => word.OriginWord);
+            var knownWordsInDB = dictionaryDB.Words.Where(word => word.EffortsNumber < word.SuccessfulEffortsNumber * 2).OrderBy(word => word.OriginWord);
             KnownWords = new ObservableCollection<Word>(knownWordsInDB);
 
         }
