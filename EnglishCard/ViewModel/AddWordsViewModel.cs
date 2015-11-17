@@ -15,7 +15,7 @@ namespace EnglishCard.ViewModel
         private DictionaryModel dictionaryDB;
         public AddWordsViewModel(string stringInDictionary)
         {
-            dictionaryDB = new DictionaryModel(stringInDictionary);
+            dictionaryDB = new DictionaryModel();
         }
         public void AddWord(Word newWords)
         {

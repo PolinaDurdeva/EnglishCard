@@ -41,7 +41,7 @@ namespace EnglishCard.ViewModel
 
         public VocabularyViewModel (string stringInDictionary)
         {
-            dictionaryDB = new DictionaryModel(stringInDictionary);
+            dictionaryDB = new DictionaryModel();
         }
 
         private ObservableCollection<Word> _needableWord;
