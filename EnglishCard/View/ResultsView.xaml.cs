@@ -26,6 +26,7 @@ namespace EnglishCard.View
             ViewModel.LoadInfoFromDataBase();
             this.DataContext = ViewModel;
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);

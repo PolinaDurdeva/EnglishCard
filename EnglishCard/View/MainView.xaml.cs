@@ -39,5 +39,10 @@ namespace EnglishCard
         {
             NavigationService.Navigate(new Uri("/View/ResultsView.xaml", UriKind.Relative));
         }
+
+        private void goToSetting(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/View/SettingsView.xaml", UriKind.Relative));
+        }
     }
 }

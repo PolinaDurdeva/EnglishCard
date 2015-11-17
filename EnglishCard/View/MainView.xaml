@@ -58,5 +58,13 @@
             </Button>
         </Grid>
     </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar >
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="tbsetting"
+                IconUri="/Images/feature.settings.png" 
+                                            Text="Settings" 
+                                            Click="goToSetting"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>
