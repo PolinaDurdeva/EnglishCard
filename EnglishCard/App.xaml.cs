@@ -15,7 +15,7 @@ namespace EnglishCard
 {
     public partial class App : Application
     {
-        public static bool Language = true;
+        public static bool Language = false;
         private static VocabularyViewModel viewModel;
         public static VocabularyViewModel ViewModel
         {

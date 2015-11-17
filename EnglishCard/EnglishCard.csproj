@@ -123,6 +123,9 @@
     <Compile Include="View\ResultsView.xaml.cs">
       <DependentUpon>ResultsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\VocabularyView.xaml.cs">
       <DependentUpon>VocabularyView.xaml</DependentUpon>
     </Compile>
@@ -146,6 +149,10 @@
     <Page Include="View\ResultsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\VocabularyView.xaml">
       <SubType>Designer</SubType>
