@@ -13,7 +13,7 @@ namespace EnglishCard.ViewModel
     public class AddWordsViewModel : INotifyPropertyChanged
     {
         private DictionaryModel dictionaryDB;
-        public AddWordsViewModel(string stringInDictionary)
+        public AddWordsViewModel()
         {
             dictionaryDB = new DictionaryModel();
         }

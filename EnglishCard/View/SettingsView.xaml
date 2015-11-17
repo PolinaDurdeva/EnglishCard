@@ -28,10 +28,10 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button Click="useEnglish" Margin="0,131,186,393" Content="English" >
-            </Button>
-            <Button Click="useEnglish" Margin="0,59,186,467" Content="French" >
-            </Button>
+            
+            <ListBox x:Name="Langs" SelectionChanged="Langs_SelectionChanged">
+                
+            </ListBox>
         </Grid>
     </Grid>
 

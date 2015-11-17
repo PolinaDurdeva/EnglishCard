@@ -9,13 +9,18 @@ using Microsoft.Phone.Shell;
 using EnglishCard.Resources;
 using EnglishCard.Model;
 using EnglishCard.ViewModel;
+using EnglishCard.ViewModelHelper;
 
 
 namespace EnglishCard
 {
     public partial class App : Application
     {
-        public static bool Language = false;
+        public static Language Lang
+        {
+            get { return lang; } set { lang = value; }
+        }
+        private static Language lang = LanguageLocator.Default();
         private static VocabularyViewModel viewModel;
         public static VocabularyViewModel ViewModel
         {
@@ -52,7 +57,7 @@ namespace EnglishCard
                 if (!db.DatabaseExists())
                     throw new Exception("Database not found");
             }
-            viewModel = new VocabularyViewModel(DictionaryModel.DBConnectionString);
+            viewModel = new VocabularyViewModel();
 
             // Query the local database and load observable collections.
             viewModel.LoadCollectionsFromDatabase();

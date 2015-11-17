@@ -18,7 +18,7 @@ namespace EnglishCard.ViewModel
         private int _countKnownWords;
         private int _totalCountTest;
 
-        public ResultsViewModel(string stringInDictionary)
+        public ResultsViewModel()
         {
             dictionaryDB = new DictionaryModel();
         }

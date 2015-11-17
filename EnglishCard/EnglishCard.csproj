@@ -95,6 +95,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converter\StraitBooleanToVisibilityConverter.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Model\Word.cs" />
     <Compile Include="Model\DictionaryModel.cs" />
@@ -104,6 +105,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModelHelper\EnglishLanguage.cs" />
+    <Compile Include="ViewModelHelper\FrehchLanguage.cs" />
+    <Compile Include="ViewModelHelper\Language.cs" />
+    <Compile Include="ViewModelHelper\LanguageLocator.cs" />
     <Compile Include="ViewModelHelper\TrainingTask.cs" />
     <Compile Include="ViewModelHelper\TrainingViewModelLocator.cs" />
     <Compile Include="ViewModel\AddWordsViewModel.cs" />

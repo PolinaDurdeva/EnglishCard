@@ -22,7 +22,7 @@ namespace EnglishCard.View
         public ResultsView()
         {
             InitializeComponent();
-            viewModel = new ResultsViewModel(DictionaryModel.DBConnectionString);
+            viewModel = new ResultsViewModel();
             ViewModel.LoadInfoFromDataBase();
             this.DataContext = ViewModel;
         }

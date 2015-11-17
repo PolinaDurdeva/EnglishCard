@@ -39,7 +39,7 @@ namespace EnglishCard.ViewModel
             NextCard = nextCard;
         }
 
-        public VocabularyViewModel (string stringInDictionary)
+        public VocabularyViewModel()
         {
             dictionaryDB = new DictionaryModel();
         }

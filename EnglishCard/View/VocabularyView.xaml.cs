@@ -26,7 +26,7 @@ namespace EnglishCard.View
         public VocabularyView()
         {
             InitializeComponent();
-            viewModel = new VocabularyViewModel(DictionaryModel.DBConnectionString);
+            viewModel = new VocabularyViewModel();
             viewModel.LoadCollectionsFromDatabase();
             
         }

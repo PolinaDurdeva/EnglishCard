@@ -23,7 +23,7 @@ namespace EnglishCard.View
         public AddingNewWords()
         {
             InitializeComponent();
-            viewModel = new AddWordsViewModel(DictionaryModel.DBConnectionString);
+            viewModel = new AddWordsViewModel();
             this.DataContext = ViewModel;
         }
 
