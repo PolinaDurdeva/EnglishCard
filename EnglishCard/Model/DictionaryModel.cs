@@ -7,6 +7,7 @@ namespace EnglishCard.Model
     public class DictionaryModel : DataContext
     {
         public static string DBConnectionString = "/Dictionary.sdf";
+        public static string DBConnectionStringFr = "/DictionaryFr.sdf";
 
         // Pass the connection string to the base class.
         public DictionaryModel() : base(DBConnectionString) { }
