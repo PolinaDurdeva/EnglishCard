@@ -27,7 +27,7 @@ namespace EnglishCard.Model
                 return EnglishCard.Resources.AppResources.EnDBPath;
             } else
             {
-                return EnglishCard.Resources.AppResources.EnDBPath;
+                return EnglishCard.Resources.AppResources.FrDBPath;
             }
         }
 
